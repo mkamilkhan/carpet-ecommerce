@@ -1,0 +1,336 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&display=swap');
+
+@theme {
+    --color-brand-bg: #0B0B0B;
+    --color-brand-card: #111111;
+    --color-brand-text: #ffffff;
+    --color-brand-btn: #C6A76B;
+    --color-brand-card-btn: #C6A76B;
+    --color-brand-card-light: #0F0F0F;
+    --color-brand-light: #BFBFBF;
+    --color-brand-title: #C6A76B;
+
+    --color-brand-bone: #E5E1D8;
+    --color-brand-black: #1A1A1A;
+    --color-brand-olive: #4A4A2C;
+    --color-brand-floral: #FAF9F6;
+    --color-card-dark: #29281E;
+
+    /* ── Font Families ─────────────────────────────── */
+    --font-gill: "Oswald", sans-serif;
+    --font-sans: "Oswald", sans-serif;
+
+    --animate-fade-in: fadeIn 0.3s ease-out;
+    --animate-fade-in-up: fadeInUp 0.6s ease-out;
+    --animate-slide-from-top: slideFromTop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-scale-up: scaleUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-marquee: marquee 30s linear infinite;
+    --animate-reveal-up: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-reveal-left: revealLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-reveal-right: revealRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    --animate-reveal-zoom: revealZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideFromTop {
+        from {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes scaleUp {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes revealUp {
+        from {
+            opacity: 0;
+            transform: translateY(60px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes revealLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes revealRight {
+        from {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes revealZoom {
+        from {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes floatY {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-14px);
+        }
+    }
+
+    @keyframes rotateSlow {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+}
+
+body {
+    @apply antialiased;
+    background-color: var(--color-brand-bg);
+    color: var(--color-brand-text);
+    font-family: "Oswald", sans-serif;
+    scroll-behavior: smooth;
+    /* Subtle dot grid across the whole page */
+    background-image: radial-gradient(circle, rgba(191, 148, 53, 0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+}
+
+/* ── Disable italics site-wide ───────────────────────────────── */
+* {
+    font-style: normal !important;
+}
+
+/* Golden Gradient Overrides */
+.bg-brand-title {
+    background: linear-gradient(135deg, #E5B647 0%, #B28930 40%, #88641C 75%, #523404 100%) !important;
+}
+
+.text-brand-title {
+    background: linear-gradient(135deg, #E5B647 0%, #B28930 40%, #88641C 75%, #523404 100%);
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+}
+
+svg.text-brand-title,
+.text-brand-title svg,
+.group:hover\:-text-brand-title svg,
+.hover\:text-brand-title:hover svg {
+    -webkit-text-fill-color: initial !important;
+    color: #BF9435 !important;
+}
+
+.border-brand-title {
+    border-color: #BF9435 !important;
+}
+
+/* Utility: hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* ── Dot grid pattern overlay ─────────────────────────────────── */
+.dot-bg {
+    background-image: radial-gradient(circle, rgba(191, 148, 53, 0.10) 1.2px, transparent 1.2px);
+    background-size: 24px 24px;
+}
+
+.dot-bg-dense {
+    background-image: radial-gradient(circle, rgba(191, 148, 53, 0.14) 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+/* ── Scroll Reveal base states ────────────────────────────────── */
+[data-reveal] {
+    opacity: 0;
+    will-change: opacity, transform;
+    transition-property: opacity, transform;
+}
+
+[data-reveal="up"] {
+    transform: translateY(60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="left"] {
+    transform: translateX(-60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="right"] {
+    transform: translateX(60px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="zoom"] {
+    transform: scale(0.85);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-reveal="fade"] {
+    transform: none;
+    transition: opacity 1s ease;
+}
+
+/* Revealed state — JS adds .revealed */
+[data-reveal].revealed {
+    opacity: 1;
+    transform: none;
+}
+
+/* Staggered children: JS adds data-delay to children */
+[data-reveal].revealed[data-delay="1"] {
+    transition-delay: 0.1s;
+}
+
+[data-reveal].revealed[data-delay="2"] {
+    transition-delay: 0.2s;
+}
+
+[data-reveal].revealed[data-delay="3"] {
+    transition-delay: 0.3s;
+}
+
+[data-reveal].revealed[data-delay="4"] {
+    transition-delay: 0.4s;
+}
+
+[data-reveal].revealed[data-delay="5"] {
+    transition-delay: 0.5s;
+}
+
+[data-reveal].revealed[data-delay="6"] {
+    transition-delay: 0.6s;
+}
+
+[data-reveal].revealed[data-delay="7"] {
+    transition-delay: 0.7s;
+}
+
+[data-reveal].revealed[data-delay="8"] {
+    transition-delay: 0.8s;
+}
+
+/* Float animation helper */
+.animate-float {
+    animation: floatY 4s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+    animation: rotateSlow 20s linear infinite;
+}
+
+/* Shimmer text effect */
+.text-shimmer {
+    background: linear-gradient(90deg, #E5B647 0%, #fff8e1 40%, #BF9435 60%, #E5B647 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+/* Horizontal rule with golden dot */
+.gold-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.gold-divider::before,
+.gold-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(191, 148, 53, 0.3), transparent);
+}
