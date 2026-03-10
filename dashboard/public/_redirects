@@ -1,0 +1,9 @@
+/* Standard SPA Redirects for Render/Netlify */
+/* This ensures that when you refresh the page on /admin or /login, it doesn't give a 404 */
+/* Render reads this file if you set up the rewrite rules, but for Static Sites it helps to have it */
+/* Actually, on Render, you set this in the "Redirects/Rewrites" tab of the dashboard: */
+/* Source: /*, Target: /index.html, Status: 200 */
+
+/* But having this file is good practice for static hosting */
+/* You should add a Rewrite Rule in Render Dashboard: */
+/* Source: /*  -> Destination: /index.html -> Action: Rewrite */
