@@ -5,8 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import axios from 'axios';
 import Calculator from '../components/Calculator';
 import { useCart } from '../context/CartContext';
-import { FiShoppingBag, FiBox, FiCheck, FiX } from 'react-icons/fi';
-import SampleRedesignModal from '../components/SampleRedesignModal';
+import { FiShoppingBag, FiBox, FiCheck } from 'react-icons/fi';
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -18,9 +17,6 @@ const ProductDetail = () => {
     const [selectedColor, setSelectedColor] = useState('#E5E1D8');
     const { addToCart, addToSamples } = useCart();
 
-    // Sample Modal State
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
     useEffect(() => {
         const fetchProduct = async () => {
             try {
@@ -28,10 +24,6 @@ const ProductDetail = () => {
                 const res = await axios.get(`/api/products/${id}`);
                 setProduct(res.data);
                 setActiveImage(res.data.image);
-                // Set default color from API if available
-                if (res.data.colors && res.data.colors.length > 0) {
-                    setSelectedColor(res.data.colors[0]);
-                }
                 setLoading(false);
             } catch (err) {
                 console.error(err);
@@ -95,7 +87,7 @@ const ProductDetail = () => {
                         <div className="space-y-4">
                             <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.5em] block">Select Surface Finish</span>
                             <div className="flex gap-3">
-                                {(product.colors && product.colors.length > 0 ? product.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).map((color, i) => (
+                                {['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926'].map((color, i) => (
                                     <button
                                         key={i}
                                         onClick={() => setSelectedColor(color)}
@@ -134,17 +126,11 @@ const ProductDetail = () => {
                                     Add to Quote
                                 </button>
                                 <button
-                                    onClick={() => {
-                                        if (product.type?.trim().toLowerCase() === 'carpets') {
-                                            setIsModalOpen(true);
-                                        } else {
-                                            addToSamples({ ...product, selectedColor });
-                                        }
-                                    }}
+                                    onClick={() => addToSamples({ ...product, selectedColor })}
                                     className="border border-white/20 text-white px-8 py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3"
                                 >
                                     <FiBox size={18} />
-                                    {product.type?.trim().toLowerCase() === 'carpets' ? 'Order Sample' : 'Inquiry'}
+                                    Order Sample
                                 </button>
                                 <a
                                     href={`https://wa.me/442088080088?text=Hello, I am interested in the ${product.name} with finish ${selectedColor}`}
@@ -172,13 +158,6 @@ const ProductDetail = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Redesigned Sample Selection Modal */}
-            <SampleRedesignModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                product={product}
-            />
         </div>
     );
 };

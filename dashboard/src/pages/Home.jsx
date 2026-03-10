@@ -48,7 +48,7 @@ const Home = () => {
             <section className="relative h-[90vh] lg:h-[100vh] flex items-center pt-[100px]" data-reveal="fade">
                 <div className="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
                     <div className="space-y-8">
-                        <h1 className="text-3xl lg:text-[56px] font-black leading-tight uppercase tracking-tighter">
+                        <h1 className="text-5xl lg:text-[56px] font-black leading-tight uppercase tracking-tighter">
                             Luxury Flooring <br />
                             <span className="text-[#C6A76B]">Installed Across London</span>
                         </h1>

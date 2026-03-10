@@ -4,7 +4,6 @@ import { FiShoppingBag, FiSearch, FiFilter, FiX, FiChevronDown, FiPlus, FiArrowL
 import { FaWhatsapp } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import SampleRedesignModal from '../components/SampleRedesignModal';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -12,10 +11,7 @@ const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [category, setCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
-
-    // Sample Modal State
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedSampleProduct, setSelectedSampleProduct] = useState(null);
+    const [isFilterOpen, setIsFilterOpen] = useState(false);
 
     const { addToCart, addToSamples, cartItems, sampleItems } = useCart();
 
@@ -56,8 +52,10 @@ const Shop = () => {
 
     }, [category, searchTerm, products]);
 
+    console.log("Selected Category:", category);
+    console.log("Available Types:", products.map(p => p.type));
     return (
-        <div className="bg-[#0B0B0B] min-h-screen text-white pb-40 relative">
+        <div className="bg-[#0B0B0B] min-h-screen text-white pb-40">
             {/* HERO / HEADER SECTION */}
             <section className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20" data-reveal="fade">
                 <div className="absolute inset-0 z-0">
@@ -140,7 +138,7 @@ const Shop = () => {
                                     {/* Color Options - Only show for Carpets */}
                                     {p.type?.trim().toLowerCase() === 'carpets' && (
                                         <div className="flex gap-1.5 mb-6">
-                                            {(p.colors && p.colors.length > 0 ? p.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).slice(0, 5).map((color, i) => (
+                                            {['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926'].map((color, i) => (
                                                 <div
                                                     key={i}
                                                     className="w-3 h-3 rounded-full border border-white/10 shadow-sm"
@@ -157,14 +155,7 @@ const Shop = () => {
 
                                     <div className="grid grid-cols-2 gap-3">
                                         <button
-                                            onClick={() => {
-                                                if (p.type?.trim().toLowerCase() === 'carpets') {
-                                                    setSelectedSampleProduct(p);
-                                                    setIsModalOpen(true);
-                                                } else {
-                                                    addToSamples({ ...p, selectedColor: '#E5E1D8' });
-                                                }
-                                            }}
+                                            onClick={() => addToSamples({ ...p, selectedColor: '#E5E1D8' })}
                                             className="bg-transparent border border-white/10 text-white font-black uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-white hover:text-black transition-all"
                                         >
                                             {p.type?.trim().toLowerCase() === 'carpets' ? 'Order Free Samples' : 'Inquiry'}
@@ -193,13 +184,6 @@ const Shop = () => {
                     Visit Our London Showroom
                 </Link>
             </section>
-
-            {/* Redesigned Sample Selection Modal */}
-            <SampleRedesignModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                product={selectedSampleProduct}
-            />
         </div>
     );
 };

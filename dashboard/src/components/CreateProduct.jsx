@@ -115,20 +115,20 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                         <h2 className="text-3xl font-black text-brand-title uppercase tracking-tighter italic leading-none">Catalog New Asset</h2>
                         <p className="text-[10px] font-black text-white uppercase tracking-widest mt-2 leading-none">Integrate a new masterpiece into the inventory</p>
                     </div>
-                    <button onClick={onClose} className="p-4 bg-brand-bg hover:bg-brand-btn text-brand-light/80 hover:text-brand-light rounded-2xl border border-brand-light/40 transition-all active:scale-95">
+                    <button onClick={onClose} className="p-4 bg-brand-bg hover:bg-brand-btn text-brand-light/80 hover:text-brand-light rounded-sm border border-brand-light/40 transition-all active:scale-95">
                         <FiX size={20} />
                     </button>
                 </div>
 
                 <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-10 space-y-10 custom-scrollbar">
                     {error && (
-                        <div className="bg-rose-500/10 text-rose-500 p-5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-rose-500/20 flex items-center gap-4 animate-shake">
+                        <div className="bg-rose-500/10 text-rose-500 p-5 rounded-sm text-[10px] font-black uppercase tracking-widest border border-rose-500/20 flex items-center gap-4 animate-shake">
                             <FiInfo size={16} /> {error}
                         </div>
                     )}
 
                     {success && (
-                        <div className="bg-emerald-500/10 text-emerald-400 p-5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-emerald-400/20 flex items-center gap-4 animate-fade-in">
+                        <div className="bg-emerald-500/10 text-emerald-400 p-5 rounded-sm text-[10px] font-black uppercase tracking-widest border border-emerald-400/20 flex items-center gap-4 animate-fade-in">
                             <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
                             {success}
                         </div>
@@ -144,7 +144,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-white focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded text-white focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
                                     placeholder="e.g. Royal Persian"
                                 />
                             </div>
@@ -156,7 +156,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     value={formData.type}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
                                 >
                                     <option value="" className="bg-brand-card">Select Classification</option>
                                     <option value="Carpets" className="bg-brand-card">Carpets</option>
@@ -174,7 +174,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     value={formData.roomSuitability}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
                                 >
                                     <option value="Bedroom" className="bg-brand-card">Bedroom</option>
                                     <option value="Conservatory" className="bg-brand-card">Conservatory</option>
@@ -195,7 +195,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                         value={formData.size}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
+                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
                                         placeholder="e.g. 5x8 ft"
                                     />
                                 </div>
@@ -208,7 +208,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                         onChange={handleChange}
                                         required
                                         min="0"
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
+                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
                                         placeholder="0.00"
                                     />
                                 </div>
@@ -221,7 +221,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                         onChange={handleChange}
                                         min="0"
                                         max="100"
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
+                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
                                         placeholder="0"
                                     />
                                 </div>
@@ -238,7 +238,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     onChange={handleChange}
                                     required
                                     min="0"
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80"
                                     placeholder="0"
                                 />
                             </div>
@@ -250,7 +250,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     name="colors"
                                     value={formData.colors}
                                     onChange={handleChange}
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80 text-xs"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/80 text-xs"
                                     placeholder="e.g. #434443, #ffffff, #000000"
                                 />
                             </div>
@@ -263,7 +263,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                     onChange={handleChange}
                                     required
                                     rows="3"
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-2xl text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all resize-none font-medium placeholder:text-brand-light/80"
+                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/40 rounded-sm text-brand-light focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all resize-none font-medium placeholder:text-brand-light/80"
                                     placeholder="Artistry details..."
                                 ></textarea>
                             </div>
@@ -271,7 +271,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Lead Visual *</label>
-                                    <div className="relative border-2 border-dashed border-brand-light/40 rounded-2xl h-36 flex flex-col items-center justify-center text-brand-light/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
+                                    <div className="relative border-2 border-dashed border-brand-light/40 rounded-sm h-36 flex flex-col items-center justify-center text-brand-light/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
                                         {preview ? (
                                             <img src={preview} alt="Preview" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                                         ) : (
@@ -285,7 +285,7 @@ const CreateProduct = ({ isOpen, onClose, onProductAdded }) => {
                                 </div>
                                 <div>
                                     <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Ensemble Assets</label>
-                                    <div className="relative border-2 border-dashed border-brand-light/40 rounded-2xl h-36 flex flex-col items-center justify-center text-brand-light/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
+                                    <div className="relative border-2 border-dashed border-brand-light/40 rounded-sm h-36 flex flex-col items-center justify-center text-brand-light/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
                                         {galleryPreviews.length > 0 ? (
                                             <div className="grid grid-cols-2 w-full h-full p-1 gap-1">
                                                 {galleryPreviews.slice(0, 4).map((p, i) => (
