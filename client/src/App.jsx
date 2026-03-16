@@ -12,7 +12,7 @@ import Contact from './pages/Contact';
 import Cart from './pages/Cart';
 import Samples from './pages/Samples';
 import Services from './pages/Services';
-import Gallery from './pages/Gallery';
+// import Gallery from './pages/Gallery';
 import CalculatorPage from './pages/CalculatorPage';
 
 import Products from './pages/Products';
@@ -34,7 +34,7 @@ function App() {
         <Route path="cart" element={<Cart />} />
         <Route path="samples" element={<Samples />} />
         <Route path="services" element={<Services />} />
-        <Route path="gallery" element={<Gallery />} />
+        {/* <Route path="gallery" element={<Gallery />} /> */}
         <Route path="calculator" element={<CalculatorPage />} />
         {/* Add more public routes here like /shop, /about, /contact */}
       </Route>

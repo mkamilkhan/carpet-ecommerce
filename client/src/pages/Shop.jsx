@@ -143,7 +143,7 @@ const Shop = () => {
                                             {(p.colors && p.colors.length > 0 ? p.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).slice(0, 5).map((color, i) => (
                                                 <div
                                                     key={i}
-                                                    className="w-3 h-3 rounded-full border border-white/10 shadow-sm"
+                                                    className="w-8 h-8 rounded border border-white/10 shadow-sm"
                                                     style={{ backgroundColor: color }}
                                                 />
                                             ))}
@@ -155,25 +155,34 @@ const Shop = () => {
                                         <span className="text-[10px] font-black text-white/20 uppercase tracking-widest">/ m²</span>
                                     </div>
 
-                                    <div className="grid grid-cols-2 gap-3">
-                                        <button
-                                            onClick={() => {
-                                                if (p.type?.trim().toLowerCase() === 'carpets') {
+                                    <div className="grid grid-cols-2 gap-3 font-black">
+                                        {p.type?.trim().toLowerCase() === 'carpets' ? (
+                                            <button
+                                                onClick={() => {
                                                     setSelectedSampleProduct(p);
                                                     setIsModalOpen(true);
-                                                } else {
-                                                    addToSamples({ ...p, selectedColor: '#E5E1D8' });
-                                                }
-                                            }}
-                                            className="bg-transparent border border-white/10 text-white font-black uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-white hover:text-black transition-all"
-                                        >
-                                            {p.type?.trim().toLowerCase() === 'carpets' ? 'Order Free Samples' : 'Inquiry'}
-                                        </button>
+                                                }}
+                                                className="bg-transparent border border-white/10 text-white uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-white hover:text-black transition-all"
+                                            >
+                                                Order Free Samples
+                                            </button>
+                                        ) : (
+                                            <Link
+                                                to={`/product/${p._id}`}
+                                                className="bg-transparent border border-white/10 text-white uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-white hover:text-black transition-all text-center flex items-center justify-center"
+                                            >
+                                                View Details
+                                            </Link>
+                                        )}
                                         <button
-                                            onClick={() => addToCart(p)}
-                                            className="bg-white text-black font-black uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-[#C6A76B] hover:text-white transition-all shadow-xl"
+                                            onClick={() => {
+                                                const message = `Hello, I'm interested in the ${p.name} (${p.type}) flooring.`;
+                                                window.open(`https://wa.me/442088080088?text=${encodeURIComponent(message)}`, '_blank');
+                                            }}
+                                            className="bg-white text-black uppercase tracking-widest text-[9px] py-4 rounded-sm hover:bg-[#C6A76B] hover:text-white transition-all shadow-xl flex items-center justify-center gap-2"
                                         >
-                                            Add to Cart
+                                            <FaWhatsapp size={14} />
+                                            Book on WhatsApp
                                         </button>
                                     </div>
                                 </div>

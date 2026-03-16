@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FiStar, FiMapPin, FiAward, FiUsers, FiArrowRight } from 'react-icons/fi';
-import Calculator from '../components/Calculator';
+
+import carpetsImg from '../assets/categories/carpets.png';
+import laminateImg from '../assets/categories/laminate.png';
+import vinylImg from '../assets/categories/vinyl.png';
+import woodImg from '../assets/categories/wood.png';
+import engineeredWoodImg from '../assets/categories/engineered_wood.png';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -39,6 +44,14 @@ const Home = () => {
         { title: 'Laminate', src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK_7G91Tt055tSGrtLcYepL2NAeULWkswxfg&s' },
         { title: 'Stairs', src: 'https://www.thepaintedhinge.com/wp-content/uploads/2025/10/scuklpted-light-staircase.png' },
         { title: 'Herringbone', src: 'https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=800&q=80' },
+    ];
+
+    const categories = [
+        { title: 'Carpets', image: carpetsImg },
+        { title: 'Laminate', image: laminateImg },
+        { title: 'Vinyl', image: vinylImg },
+        { title: 'Wood Flooring', image: woodImg },
+        { title: 'Engineered Wood', image: engineeredWoodImg },
     ];
 
     return (
@@ -108,14 +121,31 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* 5. PREMIUM CALCULATOR */}
-            <section id="calculator" className="py-24 bg-[#0B0B0B]" data-reveal="up">
+            {/* 5. OUR FLOORING OPTIONS */}
+            <section id="categories" className="py-24 bg-[#0B0B0B]" data-reveal="up">
                 <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
                     <div className="text-center mb-16">
-                        <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4">Instant Flooring Cost Calculator</h2>
-                        <p className="text-[#BFBFBF] tracking-widest uppercase text-xs">Calculate materials and installation instantly</p>
+                        <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4">Our Flooring Options</h2>
+                        <p className="text-[#C6A76B] tracking-widest uppercase text-xs font-bold mb-2">Premium flooring solutions for modern homes and commercial spaces.</p>
                     </div>
-                    <Calculator />
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+                        {categories.map((cat, i) => (
+                            <div key={i} className="group cursor-pointer">
+                                <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 border border-white/5 transition-all duration-500 group-hover:border-[#C6A76B]/50">
+                                    <img
+                                        src={cat.image}
+                                        alt={cat.title}
+                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                </div>
+                                <h3 className="text-center text-lg font-black uppercase tracking-tighter transition-colors duration-300 group-hover:text-[#C6A76B]">
+                                    {cat.title}
+                                </h3>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </section>
 

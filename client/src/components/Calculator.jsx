@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const Calculator = () => {
     const [roomSize, setRoomSize] = useState({ width: '', length: '', area: 0 });
@@ -80,6 +82,94 @@ const Calculator = () => {
             totalPrice: totalPrice.toFixed(2),
         });
     }, [roomSize, shape, unit, flooringType, coveragePerBox, underlay, extras, wastage, installation]);
+
+    const handleDownloadPDF = () => {
+        try {
+            const doc = new jsPDF();
+
+            // Brand Header
+            doc.setFontSize(22);
+            doc.setTextColor(198, 167, 107); // #C6A76B
+            doc.text('MFA FLOORS', 105, 20, { align: 'center' });
+
+            doc.setFontSize(10);
+            doc.setTextColor(100);
+            doc.text('QUOTATION ESTIMATE', 105, 28, { align: 'center' });
+
+            // Horizontal Line
+            doc.setDrawColor(198, 167, 107);
+            doc.setLineWidth(0.5);
+            doc.line(20, 35, 190, 35);
+
+            // Project Details Section
+            doc.setFontSize(14);
+            doc.setTextColor(0);
+            doc.text('Project Details', 20, 50);
+
+            const details = [
+                ['Flooring Type', flooringType],
+                ['Room Shape', shape],
+                ['Room Dimensions', `${roomSize.width || 0} x ${roomSize.length || 0} ${unit}`],
+                ['Selected Underlay', underlay],
+                ['Installation Type', installation],
+                ['Wastage Allowance', `${wastage}%`]
+            ];
+
+            autoTable(doc, {
+                startY: 55,
+                head: [['Description', 'Value']],
+                body: details,
+                theme: 'striped',
+                headStyles: { fillColor: [198, 167, 107] },
+                margin: { left: 20, right: 20 }
+            });
+
+            // Price Breakdown Section
+            const finalY = doc.lastAutoTable.finalY + 15;
+            doc.text('Price Breakdown', 20, finalY);
+
+            const breakdown = [
+                ['Materials (incl. wastage)', `£${results.materialCost || 0}`],
+                ['Underlay', `£${results.underlayCost || 0}`],
+                ['Boxes Required', `${results.boxesNeeded || 0} units`],
+                ['Extras (Bars/Grips/etc)', `£${results.extrasCost || 0}`],
+                ['Installation/Fitting', `£${results.installationCost || 0}`]
+            ];
+
+            autoTable(doc, {
+                startY: finalY + 5,
+                head: [['Item', 'Estimated Cost']],
+                body: breakdown,
+                theme: 'grid',
+                headStyles: { fillColor: [198, 167, 107] },
+                margin: { left: 20, right: 20 }
+            });
+
+            // Summary Total
+            const totalY = doc.lastAutoTable.finalY + 20;
+            doc.setFillColor(11, 11, 11);
+            doc.rect(130, totalY - 10, 60, 20, 'F');
+
+            doc.setTextColor(255);
+            doc.setFontSize(12);
+            doc.text('TOTAL ESTIMATE', 135, totalY + 2);
+
+            doc.setFontSize(16);
+            doc.setTextColor(198, 167, 107);
+            doc.text(`£${results.totalPrice || 0}`, 185, totalY + 2, { align: 'right' });
+
+            // Footer
+            doc.setFontSize(9);
+            doc.setTextColor(150);
+            doc.text('This is an automated estimate for guidance only.', 105, 280, { align: 'center' });
+            doc.text('Please visit our Tottenham showroom for a definitive quote.', 105, 285, { align: 'center' });
+
+            doc.save(`MFA_Floors_Quote_${flooringType}.pdf`);
+        } catch (error) {
+            console.error("PDF Generation Error:", error);
+            alert("Sorry, there was an error generating your PDF. Please ensure all fields are filled correctly.");
+        }
+    };
 
     return (
         <div className="bg-[#111111] border border-white/10 rounded-2xl p-8 lg:p-12 shadow-2xl">
@@ -258,7 +348,10 @@ const Calculator = () => {
                             <span className="text-[#C6A76B] text-[12px] font-black uppercase tracking-[0.4em]">TOTAL PRICE</span>
                             <span className="text-5xl font-black text-white tracking-tighter">£{results.totalPrice}</span>
                         </div>
-                        <button className="w-full bg-[#C6A76B] text-white py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.4em] hover:bg-[#b0945d] transition-all shadow-xl">
+                        <button
+                            onClick={handleDownloadPDF}
+                            className="w-full bg-[#C6A76B] text-white py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.4em] hover:bg-[#b0945d] transition-all shadow-xl"
+                        >
                             Download Instant Quote PDF
                         </button>
                     </div>

@@ -96,6 +96,20 @@ const Cart = () => {
                                         <span className="text-white/10 text-[9px] font-black uppercase tracking-[0.4em] italic leading-none">Artisan Series</span>
                                     </div>
                                     <h3 className="text-3xl font-black uppercase tracking-tighter mb-4 leading-none">{item.name}</h3>
+
+                                    {/* Color Options - Only show for Carpets */}
+                                    {item.type?.trim().toLowerCase() === 'carpets' && (
+                                        <div className="flex gap-2 mb-6">
+                                            {(item.colors && item.colors.length > 0 ? item.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).slice(0, 5).map((color, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={`w-8 h-8 rounded border border-white/10 shadow-sm ${item.selectedColor === color ? 'ring-2 ring-[#C6A76B] ring-offset-2 ring-offset-[#111111]' : ''}`}
+                                                    style={{ backgroundColor: color }}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+
                                     <div className="flex items-center justify-center md:justify-start gap-6 mb-2">
                                         <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none">Valuation: <span className="text-white font-black">£{item.price}</span> / m²</p>
                                     </div>

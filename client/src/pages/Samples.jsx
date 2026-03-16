@@ -154,9 +154,22 @@ const Samples = () => {
 
                                     <h3 className="text-3xl font-black uppercase tracking-tighter mb-6 leading-none">{item.name}</h3>
 
+                                    {/* Color Options - Only show for Carpets */}
+                                    {item.type?.trim().toLowerCase() === 'carpets' && (
+                                        <div className="flex gap-2 mb-8">
+                                            {(item.colors && item.colors.length > 0 ? item.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).slice(0, 5).map((color, i) => (
+                                                <div
+                                                    key={i}
+                                                    className={`w-8 h-8 rounded border border-white/10 shadow-sm ${item.selectedColor === color ? 'ring-2 ring-[#C6A76B] ring-offset-2 ring-offset-[#111111]' : ''}`}
+                                                    style={{ backgroundColor: color }}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+
                                     <div className="flex items-center gap-6 mb-8">
                                         <div className="w-8 h-8 rounded-sm shadow-xl border border-white/10" style={{ backgroundColor: item.selectedColor }}></div>
-                                        <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Ref: {item.selectedColor}</span>
+                                        <span className="text-[10px] font-black text-white/40 uppercase tracking-[0.3em]">Selected Ref: {item.selectedColor}</span>
                                     </div>
 
                                     <div className="mt-auto pt-8 border-t border-white/5 flex items-center justify-between">

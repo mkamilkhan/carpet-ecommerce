@@ -11,7 +11,7 @@ const Navbar = () => {
         { name: 'Home', link: '/' },
         { name: 'Shop', link: '/collection' },
         { name: 'Our Story', link: '/about' },
-        { name: 'Gallery', link: '/gallery' },
+        // { name: 'Gallery', link: '/gallery' },
         { name: 'Services', link: '/services' },
         { name: 'Calculator', link: '/calculator' },
         { name: 'Contact', link: '/contact' },
@@ -43,9 +43,10 @@ const Navbar = () => {
                             <Link
                                 key={item.name}
                                 to={item.link}
-                                className="text-[11px] font-bold uppercase tracking-[0.15em] text-white/70 hover:text-[#C6A76B] transition-all duration-300"
+                                className="relative group text-[11px] font-bold uppercase tracking-[0.15em] text-white/70 hover:text-[#C6A76B] transition-all duration-300"
                             >
                                 {item.name}
+                                <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#C6A76B] transition-all duration-300 ease-out group-hover:w-full"></span>
                             </Link>
                         ))}
                     </div>
@@ -97,10 +98,11 @@ const Navbar = () => {
                             <Link
                                 key={item.name}
                                 to={item.link}
-                                className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B] transition-all"
+                                className="relative group text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B] transition-all"
                                 onClick={() => setMobileOpen(false)}
                             >
                                 {item.name}
+                                <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#C6A76B] transition-all duration-300 ease-out group-hover:w-full"></span>
                             </Link>
                         ))}
                         <Link

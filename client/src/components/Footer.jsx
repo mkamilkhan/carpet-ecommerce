@@ -24,20 +24,21 @@ const Footer = () => {
                     {/* Center */}
                     <div>
                         <h4 className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.5em] mb-10 pb-2 border-b border-[#C6A76B]/20 inline-block text-white/40">Navigation</h4>
-                        <ul className="grid grid-cols-2 gap-x-8 gap-y-4">
+                        <ul className="grid  gap-x-8 gap-y-4">
                             {[
                                 { name: 'Home', link: '/' },
                                 { name: 'Shop', link: '/collection' },
                                 { name: 'Calculator', link: '/calculator' },
-                                { name: 'Gallery', link: '/gallery' },
+                                // { name: 'Gallery', link: '/gallery' },
                                 { name: 'Contact', link: '/contact' },
                             ].map((item) => (
                                 <li key={item.name}>
                                     <Link
                                         to={item.link}
-                                        className="text-[#BFBFBF] hover:text-[#C6A76B] transition-colors text-[11px] font-bold uppercase tracking-widest"
+                                        className="relative group text-[#BFBFBF] hover:text-[#C6A76B] transition-all duration-300 text-[11px] font-bold uppercase tracking-widest inline-block"
                                     >
                                         {item.name}
+                                        <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#C6A76B] transition-all duration-300 ease-out group-hover:w-full"></span>
                                     </Link>
                                 </li>
                             ))}
