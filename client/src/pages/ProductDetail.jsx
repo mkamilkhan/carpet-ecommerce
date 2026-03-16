@@ -7,6 +7,7 @@ import Calculator from '../components/Calculator';
 import { useCart } from '../context/CartContext';
 import { FiShoppingBag, FiBox, FiCheck, FiX } from 'react-icons/fi';
 import SampleRedesignModal from '../components/SampleRedesignModal';
+import { getImageUrl } from '../utils/imagePath';
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -74,7 +75,7 @@ const ProductDetail = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 mb-24">
                     {/* LEFT IMAGE */}
                     <div className="relative aspect-square lg:aspect-auto h-full min-h-[400px] lg:h-[600px] rounded-sm overflow-hidden border border-white/5 shadow-2xl">
-                        <img src={activeImage} className="w-full h-full object-cover" alt={product.name} />
+                        <img src={getImageUrl(activeImage)} className="w-full h-full object-cover" alt={product.name} />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                     </div>
 

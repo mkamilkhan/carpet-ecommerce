@@ -5,6 +5,7 @@ import { FaWhatsapp } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import SampleRedesignModal from '../components/SampleRedesignModal';
+import { getImageUrl } from '../utils/imagePath';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -118,7 +119,7 @@ const Shop = () => {
                             <div key={p._id} className="group flex flex-col h-full bg-[#111111] border border-white/5 hover:border-[#C6A76B]/30 transition-all duration-700">
                                 <Link to={`/product/${p._id}`} className="relative aspect-[4/5] overflow-hidden bg-[#0F0F0F]">
                                     <img
-                                        src={p.image}
+                                        src={getImageUrl(p.image)}
                                         alt={p.name}
                                         className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 opacity-80 group-hover:opacity-100"
                                     />

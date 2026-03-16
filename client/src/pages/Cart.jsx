@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
+import { getImageUrl } from '../utils/imagePath';
 import { FiTrash2, FiShoppingBag, FiArrowRight, FiCheck } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -86,7 +87,7 @@ const Cart = () => {
                                 className="group flex flex-col md:flex-row gap-8 p-8 bg-[#111111] rounded-sm border border-white/5 shadow-2xl items-center transition-all duration-700 hover:border-[#C6A76B]/20"
                             >
                                 <div className="w-full md:w-48 h-48 rounded-sm overflow-hidden border border-white/5 bg-[#0B0B0B]">
-                                    <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                    <img src={getImageUrl(item.image)} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                                 </div>
                                 <div className="flex-1 text-center md:text-left">
                                     <div className="flex items-center justify-center md:justify-start gap-4 mb-4">
