@@ -23,32 +23,46 @@ import SamplesAdmin from './pages/SamplesAdmin';
 
 function App() {
   return (
-    <Routes>
-      {/* Public Client Website Routes */}
-      <Route path="/" element={<PublicLayout />}>
-        <Route index element={<Home />} />
-        <Route path="collection" element={<Shop />} />
-        <Route path="product/:id" element={<ProductDetail />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="samples" element={<Samples />} />
-        <Route path="services" element={<Services />} />
-        {/* <Route path="gallery" element={<Gallery />} /> */}
-        <Route path="calculator" element={<CalculatorPage />} />
-        {/* Add more public routes here like /shop, /about, /contact */}
-      </Route>
+    <>
+      {/* ── Global dot-grid texture — fixed, above all bg colours, never blocks clicks ── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 9998,
+          pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(198,167,107,0.14) 1px, transparent 1px)',
+          backgroundSize: '22px 22px',
+        }}
+      />
 
-      {/* Admin Dashboard Routes */}
-      <Route path="/admin" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="products" element={<Products />} />
-        <Route path="orders" element={<Orders />} />
-        <Route path="samples" element={<SamplesAdmin />} />
-        <Route path="customers" element={<Customers />} />
-        <Route path="settings" element={<Settings />} />
-      </Route>
-    </Routes>
+      <Routes>
+        {/* Public Client Website Routes */}
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<Home />} />
+          <Route path="collection" element={<Shop />} />
+          <Route path="product/:id" element={<ProductDetail />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+          <Route path="cart" element={<Cart />} />
+          <Route path="samples" element={<Samples />} />
+          <Route path="services" element={<Services />} />
+          {/* <Route path="gallery" element={<Gallery />} /> */}
+          <Route path="calculator" element={<CalculatorPage />} />
+        </Route>
+
+        {/* Admin Dashboard Routes */}
+        <Route path="/admin" element={<DashboardLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="products" element={<Products />} />
+          <Route path="orders" element={<Orders />} />
+          <Route path="samples" element={<SamplesAdmin />} />
+          <Route path="customers" element={<Customers />} />
+          <Route path="settings" element={<Settings />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
