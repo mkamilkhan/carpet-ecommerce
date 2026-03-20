@@ -4,6 +4,7 @@ import { FiPlus, FiEdit2, FiTrash2, FiSearch } from 'react-icons/fi';
 import axios from 'axios';
 import CreateProduct from '../components/CreateProduct';
 import EditProduct from '../components/EditProduct';
+import { getImageUrl } from '../utils/imagePath';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -136,7 +137,7 @@ const Products = () => {
                                         <tr key={product._id} className="hover:bg-white/[0.02]">
                                             <td className="px-6 py-4">
                                                 <img
-                                                    src={product.image || "https://via.placeholder.com/80"}
+                                                    src={getImageUrl(product.image)}
                                                     alt=""
                                                     className="w-14 h-14 object-cover rounded-lg"
                                                 />

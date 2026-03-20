@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiX, FiUploadCloud, FiPlus, FiLoader, FiInfo, FiCheck } from 'react-icons/fi';
 import axios from 'axios';
+import { getImageUrl } from '../utils/imagePath';
 
 const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
     const [formData, setFormData] = useState({
@@ -270,7 +271,7 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                                     <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Lead Visual</label>
                                     <div className="relative border-2 border-dashed border-brand-light/50 rounded-sm h-36 flex flex-col items-center justify-center text-brand-light/70/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
                                         {preview ? (
-                                            <img src={preview} alt="Preview" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                                            <img src={(typeof preview === 'string' && !preview.startsWith('blob:')) ? getImageUrl(preview) : preview} alt="Preview" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
                                         ) : (
                                             <>
                                                 <FiUploadCloud size={24} className="mb-2 group-hover:text-brand-light/70 transition-colors" />
@@ -286,7 +287,7 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                                         {galleryPreviews.length > 0 ? (
                                             <div className="grid grid-cols-2 w-full h-full p-1 gap-1">
                                                 {galleryPreviews.slice(0, 4).map((p, i) => (
-                                                    <img key={i} src={p} className="w-full h-full object-cover rounded-md" />
+                                                    <img key={i} src={(typeof p === 'string' && !p.startsWith('blob:')) ? getImageUrl(p) : p} className="w-full h-full object-cover rounded-md" />
                                                 ))}
                                             </div>
                                         ) : (

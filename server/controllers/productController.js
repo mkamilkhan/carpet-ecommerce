@@ -36,10 +36,10 @@ const createProduct = async (req, res) => {
         const { name, type, roomSuitability, size, price, stock, description, status, colors, discount } = req.body;
 
         // Handle images from req.files
-        const image = req.files && req.files['image'] ? `/uploads/${req.files['image'][0].filename}` : undefined;
+        const image = req.files && req.files['image'] ? req.files['image'][0].path : undefined;
         let gallery = [];
         if (req.files && req.files['gallery']) {
-            gallery = req.files['gallery'].map(file => `/uploads/${file.filename}`);
+            gallery = req.files['gallery'].map(file => file.path);
         }
 
         if (!name || !type || !roomSuitability || !size || !price || !stock || !description) {
@@ -84,11 +84,11 @@ const updateProduct = async (req, res) => {
         const updateData = { ...req.body };
 
         if (req.files && req.files['image']) {
-            updateData.image = `/uploads/${req.files['image'][0].filename}`;
+            updateData.image = req.files['image'][0].path;
         }
 
         if (req.files && req.files['gallery']) {
-            updateData.gallery = req.files['gallery'].map(file => `/uploads/${file.filename}`);
+            updateData.gallery = req.files['gallery'].map(file => file.path);
         }
 
         if (req.body.colors) {
