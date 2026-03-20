@@ -1,17 +1,32 @@
 import React from 'react';
 import Calculator from '../components/Calculator';
+import calcVideo from '../assets/shopCarpet.mp4';
 
 const CalculatorPage = () => {
     return (
         <div className="bg-[#0B0B0B] min-h-screen pt-32 pb-40">
             <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-                <div className="text-center mb-24 max-w-3xl mx-auto">
+            <div className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
+                <div className="absolute inset-0 z-0">
+                    <video
+                        src={calcVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
+                </div>
+
+                <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 w-full text-center">
                     <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.6em] mb-6 block">Precision Estimation</span>
-                    <h1 className="text-6xl lg:text-[84px] font-black uppercase tracking-tighter mb-10 leading-none">The <span className="text-[#C6A76B] italic font-serif leading-none">Quotation.</span></h1>
-                    <p className="text-[#BFBFBF]/60 text-lg uppercase tracking-[0.2em] font-bold text-xs">
-                        Engineer your project's foundation with our master estimation tool. Instant architectural-grade valuations.
+                    <h1 className="text-6xl lg:text-[84px] font-black uppercase tracking-tighter mb-10 leading-none text-white">The <span className="text-[#C6A76B] italic font-serif leading-none">Quotation.</span></h1>
+                    <p className="text-[#BFBFBF] text-lg uppercase tracking-[0.2em] font-bold text-xs opacity-80 max-w-2xl mx-auto">
+                        Engineer your project's foundation with our master estimation tool. Instant valuations.
                     </p>
                 </div>
+            </div>
 
                 <div className="max-w-[1100px] mx-auto">
                     <Calculator />

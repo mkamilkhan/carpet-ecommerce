@@ -7,6 +7,7 @@ import {
     FiArrowRight,
     FiClock,
 } from "react-icons/fi";
+import contactVideo from '../assets/homecarpet.mp4';
 
 const InfoCard = ({ icon, label, lines }) => (
     <div className="flex items-start gap-4 p-6 rounded-sm bg-[#111111] border border-white/5 hover:border-[#C6A76B]/40 transition-all duration-300">
@@ -76,16 +77,30 @@ const Contact = () => {
 
     return (
         <div className="bg-[#0B0B0B] min-h-screen text-white">
-            <div className="py-24 border-b border-white/5 text-center px-6" data-reveal="fade">
-                <span className="text-[10px] uppercase tracking-[0.5em] text-[#C6A76B] mb-6 block font-black">
-                    Contact Our Atelier
-                </span>
-                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none">
-                    Let’s Build <span className="text-[#C6A76B] italic">Classics</span>
-                </h1>
-                <p className="text-[#BFBFBF] max-w-2xl mx-auto text-lg tracking-wide uppercase font-bold text-xs opacity-60">
-                    Connecting your vision with our craftsmanship. Our experts are ready to ground your home in luxury.
-                </p>
+            <div className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
+                <div className="absolute inset-0 z-0">
+                    <video
+                        src={contactVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
+                </div>
+
+                <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 w-full text-center">
+                    <span className="text-[10px] uppercase tracking-[0.5em] text-[#C6A76B] mb-6 block font-black">
+                        Contact Our Atelier
+                    </span>
+                    <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 leading-none text-white">
+                        Let’s Build <span className="text-[#C6A76B] italic">Classics</span>
+                    </h1>
+                    <p className="text-[#BFBFBF] max-w-2xl mx-auto text-lg tracking-wide uppercase font-bold text-xs opacity-80">
+                        Connecting your vision with our craftsmanship. Our experts are ready to ground your home in luxury.
+                    </p>
+                </div>
             </div>
 
             <div className="max-w-[1440px] mx-auto px-6 lg:px-12 py-20 grid lg:grid-cols-5 gap-16">

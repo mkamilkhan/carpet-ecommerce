@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiCheck, FiAward, FiUsers, FiClock, FiShield, FiHeart, FiArrowRight, FiMapPin } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import storyVideo from '../assets/StoryCarpet.mp4';
 
 const ValueCard = ({ icon, title, description }) => (
     <div className="bg-[#111111] p-10 rounded-sm border border-white/5 hover:border-[#C6A76B]/30 transition-all group">
@@ -18,13 +19,16 @@ const About = () => {
 
             {/* HERO SECTION */}
             <section className="relative h-[60vh] flex items-center overflow-hidden bg-[#0B0B0B] border-b border-white/5" data-reveal="fade">
-                <div className="absolute inset-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&q=80&w=1920"
-                        alt="Our Story"
-                        className="w-full h-full object-cover opacity-20 scale-105"
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    <video
+                        src={storyVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#C6A76B]/40 via-[#0B0B0B]/80 to-[#0B0B0B]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
                 </div>
 
                 <div className="relative z-10 max-w-7xl mx-auto px-6 w-full lg:px-12 pt-20">

@@ -7,6 +7,8 @@ import laminateImg from '../assets/categories/laminate.png';
 import vinylImg from '../assets/categories/vinyl.png';
 import woodImg from '../assets/categories/wood.png';
 import engineeredWoodImg from '../assets/categories/engineered_wood.png';
+import homeVideo from '../assets/homecarpet.mp4';
+import storyVideo from '../assets/StoryCarpet.mp4';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -89,20 +91,16 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="relative h-[200px] lg:h-[450px] rounded-[6px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group">
-                        {heroSlides.map((slide, index) => (
-                            <div
-                                key={index}
-                                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}
-                            >
-                                <img src={slide.image} alt={slide.title} className="w-full h-full object-cover transition-transform duration-[4000ms] group-hover:scale-110" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                                <div className="absolute bottom-6 left-6">
-                                    <span className="text-[#C6A76B] text-[10px] uppercase tracking-[0.5em] mb-1 block">Premium Selection</span>
-                                    <h3 className="text-2xl font-bold uppercase tracking-widest">{slide.title}</h3>
-                                </div>
-                            </div>
-                        ))}
+                    <div className="absolute inset-0 z-0 overflow-hidden">
+                        <video
+                            src={homeVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover opacity-60 scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
                     </div>
                 </div>
                 {/* Background ambient light */}
@@ -196,14 +194,17 @@ const Home = () => {
                         </div>
                     </div>
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/5 h-[400px]">
-                        <img
-                            src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80"
-                            alt="MFA Floors Showroom"
-                            className="w-full h-full object-cover"
+                        <video
+                            src={storyVideo}
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="w-full h-full object-cover opacity-80"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                         <div className="absolute bottom-6 left-6 flex items-center gap-2 text-white font-bold uppercase tracking-widest text-xs">
-                            <FiMapPin className="text-[#C6A76B]" /> Showroom Photo
+                            <FiMapPin className="text-[#C6A76B]" /> Our Story
                         </div>
                     </div>
                 </div>

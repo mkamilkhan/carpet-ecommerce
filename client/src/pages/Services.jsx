@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiClock, FiSettings, FiCheckCircle, FiShield, FiTag, FiTruck, FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import serviceVideo from '../assets/servicCarpet.mp4';
 
 const Services = () => {
     const bannerItems = [
@@ -70,14 +71,28 @@ const Services = () => {
             </div>
 
             {/* HEADER SECTION */}
-            <div className="max-w-[1200px] mx-auto text-center py-24 px-6" data-reveal="fade">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#C6A76B] mb-6 block">Our Capabilities</span>
-                <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-none">
-                    Uncompromising <br /><span className="text-[#C6A76B] italic">Service.</span>
-                </h1>
-                <p className="text-[#BFBFBF] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto uppercase tracking-wide text-xs opacity-60 font-bold">
-                    From initial concept to master fitting, we manage every detail of your architectural flooring project. Experience luxury that extends beyond the product.
-                </p>
+            <div className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
+                <div className="absolute inset-0 z-0">
+                    <video
+                        src={serviceVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
+                </div>
+
+                <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 w-full text-center">
+                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#C6A76B] mb-6 block">Our Capabilities</span>
+                    <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-none text-white">
+                        Uncompromising <br /><span className="text-[#C6A76B] italic">Service.</span>
+                    </h1>
+                    <p className="text-[#BFBFBF] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto uppercase tracking-wide text-xs opacity-80 font-bold">
+                        From initial concept to master fitting, we manage every detail of your project. Luxury that extends beyond the product.
+                    </p>
+                </div>
             </div>
 
             {/* SERVICES GRID */}
