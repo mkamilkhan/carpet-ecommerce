@@ -49,6 +49,12 @@ const Services = () => {
             desc: "Transform your favorite textures into bespoke runners and rugs. Our artisan whipping service adds the final touch of luxury to your project.",
             img: "https://images.unsplash.com/photo-1620641788421-7a1c34a6a43d?auto=format&fit=crop&q=80&w=800",
             tag: "Artisanal"
+        },
+        {
+            title: "Care Package",
+            desc: "Expert maintenance and protection for your premium floors. Our detailed care kits and professional advice ensure your investment remains flawless.",
+            img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
+            tag: "Longevity"
         }
     ];
 
