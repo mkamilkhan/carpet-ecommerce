@@ -6,6 +6,7 @@ import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 import SampleRedesignModal from '../components/SampleRedesignModal';
 import { getImageUrl } from '../utils/imagePath';
+import shopVideo from '../assets/shopCarpet.mp4';
 
 const Shop = () => {
     const [products, setProducts] = useState([]);
@@ -61,13 +62,16 @@ const Shop = () => {
         <div className="bg-[#0B0B0B] min-h-screen text-white pb-40 relative">
             {/* HERO / HEADER SECTION */}
             <section className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20" data-reveal="fade">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&q=80&w=1920"
-                        alt="Fine Flooring"
-                        className="w-full h-full object-cover opacity-20"
+                <div className="absolute inset-0 z-0 overflow-hidden">
+                    <video
+                        src={shopVideo}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="w-full h-full object-cover opacity-60 scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#C6A76B]/40 via-[#0B0B0B]/80 to-[#0B0B0B]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
                 </div>
 
                 <div className="relative z-10 max-w-[1440px] mx-auto px-6 lg:px-12 mt-23 w-full">
