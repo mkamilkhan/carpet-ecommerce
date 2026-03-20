@@ -1,6 +1,6 @@
 import React from 'react';
 import Calculator from '../components/Calculator';
-import calcVideo from '../assets/shopCarpet.mp4';
+import calcVideo from '../assets/carpet.mp4';
 
 const CalculatorPage = () => {
     return (
