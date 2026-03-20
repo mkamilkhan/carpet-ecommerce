@@ -60,24 +60,10 @@ const Services = () => {
 
     return (
         <div className="bg-[#0B0B0B] min-h-screen text-white">
-            {/* TOP PREMIUM STRIP */}
-            <div className="bg-[#111111] py-12 border-b border-white/5 overflow-hidden">
-                <div className="max-w-[1440px] mx-auto px-6 flex flex-wrap justify-between gap-12">
-                    {bannerItems.map((item, idx) => (
-                        <div key={idx} className="flex items-center gap-4 group transition-all">
-                            <div className="w-12 h-12 rounded-sm border border-[#C6A76B]/20 flex items-center justify-center text-[#C6A76B] bg-[#C6A76B]/5 group-hover:bg-[#C6A76B] group-hover:text-white transition-all duration-500">
-                                {item.icon}
-                            </div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] font-black group-hover:text-[#C6A76B] transition-colors">
-                                {item.label}
-                            </span>
-                        </div>
-                    ))}
-                </div>
-            </div>
+
 
             {/* HEADER SECTION */}
-            <div className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
+            <div className="relative h-[55vh] lg:h-[65vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
                 <div className="absolute inset-0 z-0">
                     <video
                         src={serviceVideo}
@@ -85,7 +71,7 @@ const Services = () => {
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover opacity-60 scale-105"
+                        className="w-full h-full object-cover opacity-40 scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
                 </div>
@@ -100,7 +86,21 @@ const Services = () => {
                     </p>
                 </div>
             </div>
-
+            {/* TOP PREMIUM STRIP */}
+            <div className="bg-[#111111] py-32 border-b border-white/5 overflow-hidden">
+                <div className="max-w-[1440px] mx-auto px-12 flex flex-wrap justify-between gap-6">
+                    {bannerItems.map((item, idx) => (
+                        <div key={idx} className="flex items-center gap-4 group transition-all">
+                            <div className="w-12 h-12 rounded-sm border border-[#C6A76B]/20 flex items-center justify-center text-[#C6A76B] bg-[#C6A76B]/5 group-hover:bg-[#C6A76B] group-hover:text-white transition-all duration-500">
+                                {item.icon}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] font-black group-hover:text-[#C6A76B] transition-colors">
+                                {item.label}
+                            </span>
+                        </div>
+                    ))}
+                </div>
+            </div>
             {/* SERVICES GRID */}
             <div className="max-w-[1440px] mx-auto px-6 pb-32" data-reveal="up">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

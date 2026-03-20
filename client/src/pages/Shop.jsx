@@ -61,7 +61,7 @@ const Shop = () => {
     return (
         <div className="bg-[#0B0B0B] min-h-screen text-white pb-40 relative">
             {/* HERO / HEADER SECTION */}
-            <section className="relative h-[45vh] lg:h-[55vh] flex items-center pt-20" data-reveal="fade">
+            <section className="relative h-[50vh] lg:h-[70vh] flex items-center pt-20" data-reveal="fade">
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     <video
                         src={shopVideo}
@@ -69,7 +69,7 @@ const Shop = () => {
                         loop
                         muted
                         playsInline
-                        className="w-full h-full object-cover opacity-60 scale-105"
+                        className="w-full h-full object-cover opacity-40 scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
                 </div>
