@@ -61,48 +61,49 @@ const Home = () => {
 
             {/* 3. HERO SECTION */}
             <section className="relative h-[90vh] lg:h-[100vh] flex items-center pt-[100px]" data-reveal="fade">
-                <div className="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-10">
-                    <div className="space-y-8">
-                        <h1 className="text-3xl lg:text-[56px] font-black leading-tight uppercase tracking-tighter">
-                            Luxury Flooring <br />
-                            <span className="text-[#C6A76B]">Installed Across London</span>
-                        </h1>
-                        <div className="space-y-2">
-                            <p className="text-[#BFBFBF] text-lg lg:text-[18px] max-w-lg leading-relaxed">
-                                Carpets • Laminate • Vinyl • Wood Flooring
-                            </p>
-                            <p className="text-[#BFBFBF] text-lg lg:text-[18px] font-bold uppercase tracking-widest">
-                                Professional Installation Since 2012
-                            </p>
-                        </div>
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <Link
-                                to="/calculator"
-                                className="bg-[#C6A76B] text-white px-8 py-4 rounded-sm font-black text-[12px] uppercase tracking-[0.3em] hover:bg-[#b0945d] transition-all text-center shadow-xl"
-                            >
-                                Calculate Flooring Cost
-                            </Link>
-                            <Link
-                                to="/contact"
-                                className="border border-white text-white px-8 py-4 rounded-sm font-black text-[12px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all text-center"
-                            >
-                                Book Free Measurement
-                            </Link>
-                        </div>
-                    </div>
+            {/* Background Video */}
+            <div className="absolute inset-0 z-0 overflow-hidden">
+                <video
+                    src={homeVideo}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover opacity-50 scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10" />
+            </div>
 
-                    <div className="absolute inset-0 z-0 overflow-hidden">
-                        <video
-                            src={homeVideo}
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                            className="w-full h-full object-cover opacity-60 scale-105"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0B0B0B]/40 to-[#0B0B0B] z-10" />
+            <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center z-20">
+                <div className="space-y-8">
+                    <h1 className="text-4xl lg:text-7xl font-black leading-tight uppercase tracking-tighter text-white">
+                        Luxury Flooring <br />
+                        <span className="text-[#C6A76B]">Installed Across London</span>
+                    </h1>
+                    <div className="space-y-4">
+                        <p className="text-white/90 text-lg lg:text-xl max-w-lg leading-relaxed font-black uppercase tracking-wider">
+                            Carpets • Laminate • Vinyl • Wood Flooring
+                        </p>
+                        <p className="text-[#C6A76B] text-lg lg:text-xl font-black uppercase tracking-[0.2em]">
+                            Professional Installation Since 2012
+                        </p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                        <Link
+                            to="/calculator"
+                            className="bg-[#C6A76B] text-white px-10 py-5 rounded-sm font-black text-[14px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center shadow-2xl"
+                        >
+                            Calculate Flooring Cost
+                        </Link>
+                        <Link
+                            to="/contact"
+                            className="border-2 border-white text-white px-10 py-5 rounded-sm font-black text-[14px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center"
+                        >
+                            Book Free Measurement
+                        </Link>
                     </div>
                 </div>
+            </div>
                 {/* Background ambient light */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C6A76B]/5 blur-[120px] rounded-full -mr-64 -mt-64" />
             </section>
