@@ -193,6 +193,7 @@ body::before {
 #root {
     position: relative;
     z-index: 1;
+    background-color: transparent; /* Keep transparent so body background shows dots if desired, but elements inside must be solid */
 }
 
 /* ── Disable italics site-wide ───────────────────────────────── */

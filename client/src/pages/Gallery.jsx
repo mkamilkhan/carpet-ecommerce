@@ -26,7 +26,7 @@ const Gallery = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12" data-reveal="up">
                     {galleryItems.map((item, i) => (
-                        <div key={i} className="group relative rounded-sm overflow-hidden border border-white/5 cursor-crosshair">
+                        <div key={i} className="group relative rounded-sm overflow-hidden border border-white/5 cursor-crosshair bg-brand-card">
                             <div className="aspect-[4/5] overflow-hidden">
                                 <img
                                     src={item.src}
