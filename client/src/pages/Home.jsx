@@ -60,7 +60,7 @@ const Home = () => {
         <div className="bg-[#0B0B0B] text-white overflow-hidden">
 
             {/* 3. HERO SECTION */}
-            <section className="relative min-h-screen lg:h-[100vh] flex items-center pt-[120px] pb-20 lg:py-0" data-reveal="fade">
+            <section className="relative min-h-screen flex items-center pt-[140px] pb-20 lg:pt-[160px] lg:pb-0" data-reveal="fade">
                 {/* Background Video */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     <video
