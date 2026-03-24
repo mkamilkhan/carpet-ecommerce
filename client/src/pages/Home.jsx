@@ -105,17 +105,19 @@ const Home = () => {
                     </div>
 
                     <div className="relative hidden lg:block" data-reveal="right">
-                        <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group">
-                            <img 
-                                src={heroSlides[currentSlide].image} 
-                                alt={heroSlides[currentSlide].title}
-                                className="w-full h-full object-cover transition-all duration-1000 scale-100 group-hover:scale-110"
-                                key={currentSlide}
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                            <div className="absolute bottom-12 left-12 space-y-2">
+                        <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
+                            {heroSlides.map((slide, idx) => (
+                                <img 
+                                    key={idx}
+                                    src={slide.image} 
+                                    alt={slide.title}
+                                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
+                                />
+                            ))}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+                            <div className="absolute bottom-12 left-12 space-y-2 z-20">
                                 <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.6em] block">Premium Selection</span>
-                                <h3 className="text-5xl font-black uppercase tracking-tighter text-white transition-all duration-500">{heroSlides[currentSlide].title}</h3>
+                                <h3 className="text-5xl font-black uppercase tracking-tighter text-white transition-all duration-700">{heroSlides[currentSlide].title}</h3>
                             </div>
                         </div>
                         {/* Decorative elements */}
