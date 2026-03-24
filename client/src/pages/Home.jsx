@@ -104,12 +104,12 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="relative hidden lg:block" data-reveal="right">
-                        <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
+                    <div className="relative" data-reveal="right">
+                        <div className="relative h-[400px] rounded-sm overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
                             {heroSlides.map((slide, idx) => (
-                                <img 
+                                <img
                                     key={idx}
-                                    src={slide.image} 
+                                    src={slide.image}
                                     alt={slide.title}
                                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
                                 />
@@ -130,7 +130,7 @@ const Home = () => {
             </section>
 
             {/* 4. TRUST STRIP */}
-            <section className="h-[90px] bg-[#111111] border-y border-white/5 flex items-center" data-reveal="up">
+            <section className="h-[90px] mt-32 bg-[#111111] border-y border-white/5 flex items-center" data-reveal="up">
                 <div className="max-w-[1440px] mx-auto px-6 lg:px-12 w-full">
                     <div className="flex flex-wrap justify-between items-center gap-4 text-[11px] lg:text-[13px] font-bold uppercase tracking-widest">
                         <div className="flex items-center gap-3"><FiStar className="text-[#C6A76B]" size={18} /> <span className="text-white">5 Star Rated in London</span></div>
