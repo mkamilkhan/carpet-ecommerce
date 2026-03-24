@@ -35,7 +35,7 @@ const Home = () => {
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-        }, 4000);
+        }, 2000);
         return () => clearInterval(timer);
     }, []);
 
@@ -107,14 +107,15 @@ const Home = () => {
                     <div className="relative hidden lg:block" data-reveal="right">
                         <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group">
                             <img 
-                                src="https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=1200" 
-                                alt="Premium Flooring"
-                                className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
+                                src={heroSlides[currentSlide].image} 
+                                alt={heroSlides[currentSlide].title}
+                                className="w-full h-full object-cover transition-all duration-1000 scale-100 group-hover:scale-110"
+                                key={currentSlide}
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                             <div className="absolute bottom-12 left-12 space-y-2">
                                 <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.6em] block">Premium Selection</span>
-                                <h3 className="text-5xl font-black uppercase tracking-tighter text-white">Vinyl</h3>
+                                <h3 className="text-5xl font-black uppercase tracking-tighter text-white transition-all duration-500">{heroSlides[currentSlide].title}</h3>
                             </div>
                         </div>
                         {/* Decorative elements */}
