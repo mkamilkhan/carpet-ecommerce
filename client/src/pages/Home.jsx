@@ -60,7 +60,7 @@ const Home = () => {
         <div className="bg-[#0B0B0B] text-white overflow-hidden">
 
             {/* 3. HERO SECTION */}
-            <section className="relative h-[90vh] lg:h-[100vh] flex items-center pt-[100px]" data-reveal="fade">
+            <section className="relative min-h-screen lg:h-[100vh] flex items-center pt-[120px] pb-20 lg:py-0" data-reveal="fade">
                 {/* Background Video */}
                 <div className="absolute inset-0 z-0 overflow-hidden">
                     <video
@@ -76,7 +76,7 @@ const Home = () => {
 
                 <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center z-20">
                     <div className="space-y-6 lg:space-y-10" data-reveal="left">
-                        <h1 className="text-4xl md:text-5xl lg:text-[80px] font-black leading-none uppercase tracking-tighter text-white">
+                        <h1 className="text-3xl md:text-5xl lg:text-[80px] font-black leading-[1.1] lg:leading-none uppercase tracking-tighter text-white">
                             Luxury Flooring <br />
                             <span className="text-[#C6A76B]">Installed Across London</span>
                         </h1>
@@ -104,12 +104,12 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="relative mt-8 lg:mt-0" data-reveal="right">
+                    <div className="relative mt-16 lg:mt-0" data-reveal="right">
                         <div className="relative h-[280px] md:h-[400px] rounded-sm overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
                             {heroSlides.map((slide, idx) => (
-                                <img 
+                                <img
                                     key={idx}
-                                    src={slide.image} 
+                                    src={slide.image}
                                     alt={slide.title}
                                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
                                 />
@@ -124,7 +124,7 @@ const Home = () => {
                         <div className="absolute -top-5 lg:-top-10 -right-5 lg:-right-10 w-20 lg:w-40 h-20 lg:h-40 border-t-2 border-r-2 border-[#C6A76B]/30 pointer-events-none" />
                         <div className="absolute -bottom-5 lg:-bottom-10 -left-5 lg:-left-10 w-20 lg:w-40 h-20 lg:h-40 border-b-2 border-l-2 border-[#C6A76B]/30 pointer-events-none" />
                     </div>
-            </div>
+                </div>
                 {/* Background ambient light */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C6A76B]/5 blur-[120px] rounded-full -mr-64 -mt-64" />
             </section>
