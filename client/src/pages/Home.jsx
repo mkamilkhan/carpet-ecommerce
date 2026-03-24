@@ -74,57 +74,57 @@ const Home = () => {
                     <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10" />
                 </div>
 
-                <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center z-20">
-                    <div className="space-y-10" data-reveal="left">
-                        <h1 className="text-5xl lg:text-[80px] font-black leading-[0.9] uppercase tracking-tighter text-white">
+                <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center z-20">
+                    <div className="space-y-6 lg:space-y-10" data-reveal="left">
+                        <h1 className="text-4xl md:text-5xl lg:text-[80px] font-black leading-none uppercase tracking-tighter text-white">
                             Luxury Flooring <br />
                             <span className="text-[#C6A76B]">Installed Across London</span>
                         </h1>
-                        <div className="space-y-4">
-                            <p className="text-white/60 text-lg lg:text-xl max-w-lg leading-relaxed font-bold uppercase tracking-widest text-[12px]">
+                        <div className="space-y-3 lg:space-y-4">
+                            <p className="text-white/60 text-sm md:text-lg lg:text-xl max-w-lg leading-relaxed font-bold uppercase tracking-widest">
                                 Carpets • Laminate • Vinyl • Wood Flooring
                             </p>
-                            <p className="text-white/40 text-lg lg:text-xl font-black uppercase tracking-[0.2em] text-[14px]">
+                            <p className="text-white/40 text-[11px] md:text-base lg:text-xl font-black uppercase tracking-[0.2em]">
                                 Professional Installation Since 2012
                             </p>
                         </div>
-                        <div className="flex flex-col sm:flex-row gap-6 pt-4">
+                        <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 pt-2 lg:pt-4">
                             <Link
                                 to="/calculator"
-                                className="bg-[#C6A76B] text-white px-10 py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center shadow-2xl"
+                                className="bg-[#C6A76B] text-white px-6 lg:px-10 py-4 lg:py-5 rounded-sm font-black text-[10px] lg:text-[12px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center shadow-2xl"
                             >
                                 Calculate Flooring Cost
                             </Link>
                             <Link
                                 to="/contact"
-                                className="border-2 border-white/20 text-white px-10 py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center"
+                                className="border-2 border-white/20 text-white px-6 lg:px-10 py-4 lg:py-5 rounded-sm font-black text-[10px] lg:text-[12px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all text-center"
                             >
                                 Book Free Measurement
                             </Link>
                         </div>
                     </div>
 
-                    <div className="relative" data-reveal="right">
-                        <div className="relative h-[400px] rounded-sm overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
+                    <div className="relative mt-8 lg:mt-0" data-reveal="right">
+                        <div className="relative h-[280px] md:h-[400px] rounded-sm overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-white/10 group bg-black">
                             {heroSlides.map((slide, idx) => (
-                                <img
+                                <img 
                                     key={idx}
-                                    src={slide.image}
+                                    src={slide.image} 
                                     alt={slide.title}
                                     className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${idx === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'}`}
                                 />
                             ))}
                             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
-                            <div className="absolute bottom-12 left-12 space-y-2 z-20">
-                                <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.6em] block">Premium Selection</span>
-                                <h3 className="text-5xl font-black uppercase tracking-tighter text-white transition-all duration-700">{heroSlides[currentSlide].title}</h3>
+                            <div className="absolute bottom-6 md:bottom-12 left-6 md:left-12 space-y-1 md:space-y-2 z-20">
+                                <span className="text-[#C6A76B] text-[8px] md:text-[10px] font-black uppercase tracking-[0.6em] block">Premium Selection</span>
+                                <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white transition-all duration-700">{heroSlides[currentSlide].title}</h3>
                             </div>
                         </div>
                         {/* Decorative elements */}
-                        <div className="absolute -top-10 -right-10 w-40 h-40 border-t-2 border-r-2 border-[#C6A76B]/30 pointer-events-none" />
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 border-b-2 border-l-2 border-[#C6A76B]/30 pointer-events-none" />
+                        <div className="absolute -top-5 lg:-top-10 -right-5 lg:-right-10 w-20 lg:w-40 h-20 lg:h-40 border-t-2 border-r-2 border-[#C6A76B]/30 pointer-events-none" />
+                        <div className="absolute -bottom-5 lg:-bottom-10 -left-5 lg:-left-10 w-20 lg:w-40 h-20 lg:h-40 border-b-2 border-l-2 border-[#C6A76B]/30 pointer-events-none" />
                     </div>
-                </div>
+            </div>
                 {/* Background ambient light */}
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C6A76B]/5 blur-[120px] rounded-full -mr-64 -mt-64" />
             </section>
