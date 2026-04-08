@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
-const Calculator = () => {
+const Calculator = ({ productName = null, productPrice = null }) => {
     const [roomSize, setRoomSize] = useState({ width: '', length: '', area: 0 });
     const [shape, setShape] = useState('Rectangle');
     const [unit, setUnit] = useState('Meters');
     const [flooringType, setFlooringType] = useState('Carpet');
     const [coveragePerBox, setCoveragePerBox] = useState(2.5);
-    const [underlay, setUnderlay] = useState('Standard');
+    const [underlay, setUnderlay] = useState('None');
     const [extras, setExtras] = useState({
         doorBars: false,
         adhesive: false,
         grippers: false,
         skirting: false,
     });
-    const [wastage, setWastage] = useState(10);
-    const [installation, setInstallation] = useState('Supply + Fit');
+    const [wastage, setWastage] = useState(0);
+    const [installation, setInstallation] = useState('Supply Only');
     const [pricePerM2, setPricePerM2] = useState(25);
     const [results, setResults] = useState({
         materialCost: 0,
@@ -36,6 +36,7 @@ const Calculator = () => {
     };
 
     const underlayPrices = {
+        'None': 0,
         'Standard': 5,
         'Premium': 8,
         'Soundproof': 12,
@@ -59,7 +60,8 @@ const Calculator = () => {
         }
 
         const areaWithWastage = area * (1 + wastage / 100);
-        const materialCost = areaWithWastage * (flooringPrices[flooringType] || 0);
+        const currentPrice = productPrice !== null ? parseFloat(productPrice) : (flooringPrices[flooringType] || 0);
+        const materialCost = areaWithWastage * currentPrice;
         const underlayCost = areaWithWastage * (underlayPrices[underlay] || 0);
 
         let extrasCost = 0;
@@ -81,7 +83,7 @@ const Calculator = () => {
             boxesNeeded: boxesNeeded,
             totalPrice: totalPrice.toFixed(2),
         });
-    }, [roomSize, shape, unit, flooringType, coveragePerBox, underlay, extras, wastage, installation]);
+    }, [roomSize, shape, unit, flooringType, coveragePerBox, underlay, extras, wastage, installation, productPrice]);
 
     const handleDownloadPDF = () => {
         try {
@@ -107,7 +109,7 @@ const Calculator = () => {
             doc.text('Project Details', 20, 50);
 
             const details = [
-                ['Flooring Type', flooringType],
+                ['Flooring Type', productName || flooringType],
                 ['Room Shape', shape],
                 ['Room Dimensions', `${roomSize.width || 0} x ${roomSize.length || 0} ${unit}`],
                 ['Selected Underlay', underlay],
@@ -230,15 +232,21 @@ const Calculator = () => {
                         </div>
                         <div>
                             <h3 className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.3em] mb-4">Flooring Type</h3>
-                            <select
-                                value={flooringType}
-                                onChange={(e) => setFlooringType(e.target.value)}
-                                className="w-full bg-black/50 border border-white/10 rounded-sm p-3 text-white focus:border-[#C6A76B] outline-none transition-all"
-                            >
-                                {Object.keys(flooringPrices).map(type => (
-                                    <option key={type} value={type}>{type}</option>
-                                ))}
-                            </select>
+                            {productName ? (
+                                <div className="w-full bg-black/50 border border-[#C6A76B]/50 rounded-sm p-3 text-[#C6A76B] font-bold truncate">
+                                    {productName} (£{productPrice}/m²)
+                                </div>
+                            ) : (
+                                <select
+                                    value={flooringType}
+                                    onChange={(e) => setFlooringType(e.target.value)}
+                                    className="w-full bg-black/50 border border-white/10 rounded-sm p-3 text-white focus:border-[#C6A76B] outline-none transition-all"
+                                >
+                                    {Object.keys(flooringPrices).map(type => (
+                                        <option key={type} value={type}>{type}</option>
+                                    ))}
+                                </select>
+                            )}
                         </div>
                     </div>
 
@@ -294,6 +302,7 @@ const Calculator = () => {
                                 onChange={(e) => setWastage(parseInt(e.target.value))}
                                 className="w-full bg-black/50 border border-white/10 rounded-sm p-3 text-white focus:border-[#C6A76B] outline-none transition-all"
                             >
+                                <option value={0}>0%</option>
                                 <option value={5}>5%</option>
                                 <option value={10}>10%</option>
                                 <option value={15}>15%</option>

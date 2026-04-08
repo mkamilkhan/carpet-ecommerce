@@ -136,7 +136,7 @@ const ProductDetail = () => {
                                 </button>
                                 <button
                                     onClick={() => {
-                                        if (product.type?.trim().toLowerCase() === 'carpets') {
+                                        if (product.type?.trim().toLowerCase().includes('carpet')) {
                                             setIsModalOpen(true);
                                         } else {
                                             addToSamples({ ...product, selectedColor });
@@ -145,7 +145,7 @@ const ProductDetail = () => {
                                     className="border border-white/20 text-white px-8 py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3"
                                 >
                                     <FiBox size={18} />
-                                    {product.type?.trim().toLowerCase() === 'carpets' ? 'Order Sample' : 'Inquiry'}
+                                    {product.type?.trim().toLowerCase().includes('carpet') ? 'Order Sample' : 'Inquiry'}
                                 </button>
                                 <a
                                     href={`https://wa.me/442088080088?text=Hello, I am interested in the ${product.name} with finish ${selectedColor}`}
@@ -169,7 +169,7 @@ const ProductDetail = () => {
                             <h2 className="text-3xl lg:text-5xl font-black uppercase tracking-tighter mb-4">Calculate Your Space</h2>
                             <p className="text-[#BFBFBF] tracking-widest uppercase text-xs">Get an instant estimate for materials & fitting</p>
                         </div>
-                        <Calculator />
+                        <Calculator productPrice={product.price} productName={product.name} />
                     </div>
                 </div>
             </div>

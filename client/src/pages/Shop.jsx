@@ -3,7 +3,7 @@ import axios from 'axios';
 import { FiShoppingBag, FiSearch, FiFilter, FiX, FiChevronDown, FiPlus, FiArrowLeft, FiArrowRight, FiInfo, FiHeart, FiShare2 } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SampleRedesignModal from '../components/SampleRedesignModal';
 import { getImageUrl } from '../utils/imagePath';
 import shopVideo from '../assets/shopCarpet.mp4';
@@ -14,6 +14,7 @@ const Shop = () => {
     const [loading, setLoading] = useState(true);
     const [category, setCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
+    const location = useLocation();
 
     // Sample Modal State
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -21,7 +22,7 @@ const Shop = () => {
 
     const { addToCart, addToSamples, cartItems, sampleItems } = useCart();
 
-    const categories = ['All', 'Carpets', 'Laminate Flooring', 'Vinyl Flooring', 'Herringbone', 'Stairs'];
+    const categories = ['All', 'Carpet', 'Vinyl', 'Laminate', 'Engineered Wood', 'Commercial Carpet', 'Commercial Vinyl', 'Rugs'];
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -40,11 +41,31 @@ const Shop = () => {
     }, []);
 
     useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const catParam = queryParams.get('category');
+        if (catParam) {
+            const matchedCat = categories.find(c => c.toLowerCase() === catParam.toLowerCase());
+            if (matchedCat && category === 'All') {
+                setCategory(matchedCat);
+            }
+        }
+    }, [location.search, categories, category]);
+
+    useEffect(() => {
         let result = products;
+
+        const queryParams = new URLSearchParams(location.search);
+        const roomParam = queryParams.get('room');
 
         if (category && category !== 'All') {
             result = result.filter(p =>
                 p.type?.trim().toLowerCase() === category.trim().toLowerCase()
+            );
+        }
+
+        if (roomParam) {
+            result = result.filter(p =>
+                p.roomSuitability?.trim().toLowerCase() === roomParam.trim().toLowerCase()
             );
         }
 
@@ -56,7 +77,7 @@ const Shop = () => {
 
         setFilteredProducts(result);
 
-    }, [category, searchTerm, products]);
+    }, [category, searchTerm, products, location.search]);
 
     return (
         <div className="bg-[#0B0B0B] min-h-screen text-white pb-40 relative">
@@ -143,7 +164,7 @@ const Shop = () => {
                                     <h3 className="text-2xl font-black uppercase tracking-tighter mb-4 text-white group-hover:text-[#C6A76B] transition-colors">{p.name}</h3>
 
                                     {/* Color Options - Only show for Carpets */}
-                                    {p.type?.trim().toLowerCase() === 'carpets' && (
+                                    {p.type?.trim().toLowerCase().includes('carpet') && (
                                         <div className="flex gap-1.5 mb-6">
                                             {(p.colors && p.colors.length > 0 ? p.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).slice(0, 5).map((color, i) => (
                                                 <div
@@ -161,7 +182,7 @@ const Shop = () => {
                                     </div>
 
                                     <div className="grid grid-cols-2 gap-3 font-black">
-                                        {p.type?.trim().toLowerCase() === 'carpets' ? (
+                                        {p.type?.trim().toLowerCase().includes('carpet') ? (
                                             <button
                                                 onClick={() => {
                                                     setSelectedSampleProduct(p);

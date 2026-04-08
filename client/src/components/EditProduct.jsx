@@ -161,11 +161,14 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                                     required
                                     className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-2xl text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
                                 >
-                                    <option value="Carpets" className="bg-brand-card">Carpets</option>
-                                    <option value="Vinyl Flooring" className="bg-brand-card">Vinyl Flooring</option>
-                                    <option value="Laminate Flooring" className="bg-brand-card">Laminate Flooring</option>
-                                    <option value="Luxury Vinyl Tiles" className="bg-brand-card">Luxury Vinyl Tiles</option>
+                                    <option value="" className="bg-brand-card">Select Classification</option>
+                                    <option value="Carpet" className="bg-brand-card">Carpet</option>
+                                    <option value="Vinyl" className="bg-brand-card">Vinyl / Lino</option>
+                                    <option value="Laminate" className="bg-brand-card">Laminate</option>
                                     <option value="Engineered Wood" className="bg-brand-card">Engineered Wood</option>
+                                    <option value="Commercial Carpet" className="bg-brand-card">Commercial Carpet</option>
+                                    <option value="Commercial Vinyl" className="bg-brand-card">Commercial Vinyl</option>
+                                    <option value="Rugs" className="bg-brand-card">Rugs</option>
                                 </select>
                             </div>
 
@@ -178,13 +181,37 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                                     required
                                     className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-2xl text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
                                 >
-                                    <option value="Bedroom" className="bg-brand-card">Bedroom</option>
-                                    <option value="Conservatory" className="bg-brand-card">Conservatory</option>
-                                    <option value="Dining" className="bg-brand-card">Dining</option>
-                                    <option value="Home Office" className="bg-brand-card">Home Office</option>
-                                    <option value="Hall" className="bg-brand-card">Hall</option>
-                                    <option value="Living Room" className="bg-brand-card">Living Room</option>
-                                    <option value="Stairs" className="bg-brand-card">Stairs</option>
+                                    <option value="" className="bg-brand-card">Select Label/Room</option>
+                                    <optgroup label="Rooms" className="bg-brand-card text-[#C6A76B] font-bold">
+                                        <option value="Stairs" className="bg-brand-card text-white">Stairs</option>
+                                        <option value="Bedroom" className="bg-brand-card text-white">Bedroom</option>
+                                        <option value="Lounge" className="bg-brand-card text-white">Lounge</option>
+                                        <option value="Stair Runners" className="bg-brand-card text-white">Stair Runners</option>
+                                        <option value="Hall" className="bg-brand-card text-white">Hall</option>
+                                        <option value="Hallway" className="bg-brand-card text-white">Hallway</option>
+                                        <option value="Dining" className="bg-brand-card text-white">Dining</option>
+                                        <option value="Conservatory" className="bg-brand-card text-white">Conservatory</option>
+                                        <option value="Home Office" className="bg-brand-card text-white">Home Office</option>
+                                        <option value="Kitchen" className="bg-brand-card text-white">Kitchen</option>
+                                        <option value="Bathroom" className="bg-brand-card text-white">Bathroom</option>
+                                    </optgroup>
+                                    <optgroup label="Vinyl Styles" className="bg-brand-card text-[#C6A76B] font-bold">
+                                        <option value="Wood Effect" className="bg-brand-card text-white">Wood Effect</option>
+                                        <option value="Marble Effect" className="bg-brand-card text-white">Marble Effect</option>
+                                        <option value="Tile Effect" className="bg-brand-card text-white">Tile Effect</option>
+                                        <option value="Stone Effect" className="bg-brand-card text-white">Stone Effect</option>
+                                        <option value="Patterned" className="bg-brand-card text-white">Patterned</option>
+                                        <option value="Terrazzo" className="bg-brand-card text-white">Terrazzo</option>
+                                        <option value="Victorian" className="bg-brand-card text-white">Victorian</option>
+                                    </optgroup>
+                                    <optgroup label="Wood Finishes" className="bg-brand-card text-[#C6A76B] font-bold">
+                                        <option value="Herringbone" className="bg-brand-card text-white">Herringbone</option>
+                                        <option value="Oak" className="bg-brand-card text-white">Oak</option>
+                                        <option value="Brushed & Oiled" className="bg-brand-card text-white">Brushed & Oiled</option>
+                                        <option value="Lacquered" className="bg-brand-card text-white">Lacquered</option>
+                                        <option value="Rustic" className="bg-brand-card text-white">Rustic</option>
+                                        <option value="Natural" className="bg-brand-card text-white">Natural</option>
+                                    </optgroup>
                                 </select>
                             </div>
 
