@@ -14,7 +14,13 @@ const productSchema = mongoose.Schema({
     roomSuitability: {
         type: String,
         required: [true, 'Please select room suitability'],
-        enum: ['Bedroom', 'Conservatory', 'Dining', 'Home Office', 'Hall', 'Living Room', 'Stairs'],
+        enum: [
+            'Bedroom', 'Conservatory', 'Dining', 'Home Office', 'Hall', 'Living Room', 'Stairs',
+            'Lounge', 'Stair Runners', 'Kitchen', 'Bathroom', 'Hallway', 'Herringbone', 'Oak',
+            'Grass Carpet', 'Wood Effect', 'Marble Effect', 'Tile Effect', 'Stone Effect',
+            'Patterned', 'Terrazzo', 'Victorian', 'Rustic', 'Natural', 'Wall-to-Wall Carpet',
+            'Brushed & Oiled', 'Lacquered'
+        ],
         default: 'Living Room'
     },
     size: {

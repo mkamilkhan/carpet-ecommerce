@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Cart = () => {
-    const { cartItems, removeFromCart, clearCart, cartTotal } = useCart();
+    const { cartItems, removeFromCart, clearCart, cartTotal, totalDiscount, finalTotal } = useCart();
     const navigate = useNavigate();
 
     const handleCheckout = async () => {
@@ -111,8 +111,19 @@ const Cart = () => {
                                         </div>
                                     )}
 
-                                    <div className="flex items-center justify-center md:justify-start gap-6 mb-2">
-                                        <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none">Valuation: <span className="text-white font-black">£{item.price}</span> / m²</p>
+                                    <div className="flex items-center justify-center md:justify-start gap-4 mb-2">
+                                        <p className="text-[10px] font-black text-white/40 uppercase tracking-widest leading-none">
+                                            Valuation: <span className={item.discount > 0 ? "line-through opacity-40 mr-2" : "text-white font-black"}>£{item.price}</span>
+                                            {item.discount > 0 && (
+                                                <span className="text-red-500 font-black">£{item.price - (item.price * item.discount / 100)}</span>
+                                            )}
+                                            <span className="text-white/40 font-black ml-1">/ m²</span>
+                                        </p>
+                                        {item.discount > 0 && (
+                                            <span className="bg-red-500/10 text-red-500 text-[8px] font-black px-2 py-0.5 rounded-sm border border-red-500/20 uppercase tracking-widest">
+                                                -{item.discount}% OFF
+                                            </span>
+                                        )}
                                     </div>
                                 </div>
                                 <button
@@ -137,6 +148,12 @@ const Cart = () => {
                                     <span className="text-white/30 font-black uppercase text-[10px] tracking-[0.4em]">Sub-total</span>
                                     <span className="text-white font-black text-xl tracking-tighter leading-none">£{cartTotal}.00</span>
                                 </div>
+                                {totalDiscount > 0 && (
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-red-500 font-black uppercase text-[10px] tracking-[0.4em]">Promotional Discount</span>
+                                        <span className="text-red-500 font-black text-xl tracking-tighter leading-none">- £{totalDiscount}.00</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between items-center pb-6 border-b border-white/5">
                                     <span className="text-white/30 font-black uppercase text-[10px] tracking-[0.4em]">Fitting</span>
                                     <span className="text-[#C6A76B] font-black text-[10px] uppercase tracking-[0.4em]">To be Quoted</span>
@@ -145,7 +162,7 @@ const Cart = () => {
 
                             <div className="mb-12">
                                 <p className="text-white/10 font-black uppercase text-[10px] tracking-[0.6em] mb-4 text-center">Estimated Total</p>
-                                <p className="text-6xl font-black text-[#C6A76B] tracking-tighter leading-none text-center">£{cartTotal}</p>
+                                <p className="text-6xl font-black text-[#C6A76B] tracking-tighter leading-none text-center">£{finalTotal}</p>
                             </div>
 
                             <button

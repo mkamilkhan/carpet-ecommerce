@@ -69,12 +69,23 @@ export const CartProvider = ({ children }) => {
 
     const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
     const cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+    
+    // Calculate total discount
+    const totalDiscount = cartItems.reduce((total, item) => {
+        const price = Number(item.price) || 0;
+        const discount = Number(item.discount) || 0;
+        const quantity = Number(item.quantity) || 1;
+        const discountAmount = (price * discount / 100) * quantity;
+        return total + discountAmount;
+    }, 0);
+
+    const finalTotal = cartTotal - totalDiscount;
     const samplesCount = sampleItems.length;
 
     const value = React.useMemo(() => ({
-        cartItems, addToCart, removeFromCart, clearCart, cartCount, cartTotal,
+        cartItems, addToCart, removeFromCart, clearCart, cartCount, cartTotal, totalDiscount, finalTotal,
         sampleItems, addToSamples, removeFromSamples, clearSamples, samplesCount
-    }), [cartItems, sampleItems, cartCount, cartTotal, samplesCount]);
+    }), [cartItems, sampleItems, cartCount, cartTotal, totalDiscount, finalTotal, samplesCount]);
 
     return (
         <CartContext.Provider value={value}>

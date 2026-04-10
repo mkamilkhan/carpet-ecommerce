@@ -4,6 +4,7 @@ import { FiMenu, FiX, FiBox, FiShoppingBag, FiClock, FiChevronRight } from 'reac
 import { FaBed, FaCouch, FaBath, FaUtensils, FaHome, FaStar, FaBuilding } from 'react-icons/fa';
 import { useCart } from '../context/CartContext';
 import BookingModal from './BookingModal';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -131,7 +132,7 @@ const Navbar = () => {
                                 onMouseEnter={() => setHoveredMenu(cat)}
                                 className="relative group text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 h-full flex items-center cursor-pointer"
                             >
-                                <Link to={`/collection?category=${encodeURIComponent(cat)}`}>
+                                <Link onClick={() => setHoveredMenu(null)} to={`/collection?category=${encodeURIComponent(cat)}`}>
                                     <span className={hoveredMenu === cat ? "text-[#C6A76B]" : "text-white/70 group-hover:text-[#C6A76B]"}>
                                         {cat}
                                     </span>
@@ -173,76 +174,93 @@ const Navbar = () => {
                 </div>
 
                 {/* MEGA MENU MODAL */}
-                {hoveredMenu && megaMenuData[hoveredMenu] && (
-                    <div 
-                        className="absolute top-full left-0 w-full bg-[#f4f3ef] text-black shadow-2xl border-t border-white/10 overflow-hidden"
-                        onMouseEnter={() => setHoveredMenu(hoveredMenu)}
-                        onMouseLeave={() => setHoveredMenu(null)}
-                    >
-                        <div className="flex max-w-[1440px] mx-auto min-h-[400px]">
-
-
-                            {/* Middle Content - Room Grid */}
-                            <div className="flex-1 p-8 bg-[#f8f7f5]">
-                                <div className="grid grid-cols-4 gap-6">
-                                    {megaMenuData[hoveredMenu].rooms.map(room => (
-                                        <Link to={`/collection?category=${encodeURIComponent(hoveredMenu)}&room=${encodeURIComponent(room.name)}`} key={room.name} className="group bg-white rounded-lg p-6 flex flex-col items-center justify-center shadow-sm hover:shadow-md border border-black/5 transition-all hover:border-[#C6A76B]/30 hover:-translate-y-1">
-                                            {room.icon}
-                                            <span className="text-[11px] font-bold uppercase tracking-widest text-black/80 mt-2 text-center group-hover:text-[#C6A76B] transition-colors">{room.name}</span>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Right Promo Box */}
-                            <div className="w-[380px] bg-white p-8 flex flex-col border-l border-black/5">
-                                <div className="flex-1 bg-[#ebf0f4] rounded-lg overflow-hidden flex flex-col">
-                                    <div className="h-[200px] overflow-hidden">
-                                        <img src={megaMenuData[hoveredMenu].promoImage} alt={megaMenuData[hoveredMenu].promoTitle} className="w-full h-full object-cover" />
+                <AnimatePresence>
+                    {hoveredMenu && megaMenuData[hoveredMenu] && (
+                        <motion.div 
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute top-[100%] left-0 w-full bg-[#111111] text-white shadow-[0_30px_60px_rgba(0,0,0,0.8)] border-t border-[#C6A76B]/20 overflow-hidden"
+                            onMouseEnter={() => setHoveredMenu(hoveredMenu)}
+                            onMouseLeave={() => setHoveredMenu(null)}
+                        >
+                            <div className="flex max-w-[1440px] mx-auto min-h-[400px]">
+                                {/* Middle Content - Room Grid */}
+                                <div className="flex-1 p-10 bg-[#0B0B0B] relative">
+                                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C6A76B]/5 rounded-full blur-[100px] pointer-events-none" />
+                                    <div className="relative z-10 grid grid-cols-4 gap-6">
+                                        {megaMenuData[hoveredMenu].rooms.map(room => (
+                                            <Link onClick={() => setHoveredMenu(null)} to={`/collection?category=${encodeURIComponent(hoveredMenu)}&room=${encodeURIComponent(room.name)}`} key={room.name} className="group bg-[#161616] rounded-xl p-8 flex flex-col items-center justify-center shadow-lg border border-white/5 transition-all duration-300 hover:border-[#C6A76B]/40 hover:shadow-[0_0_30px_rgba(198,167,107,0.15)] hover:-translate-y-1">
+                                                <div className="text-white/30 group-hover:text-[#C6A76B] transition-colors duration-300 mb-4 scale-110 group-hover:scale-125">
+                                                    {React.cloneElement(room.icon, { className: 'currentColor' })}
+                                                </div>
+                                                <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 text-center group-hover:text-white transition-colors">{room.name}</span>
+                                            </Link>
+                                        ))}
                                     </div>
-                                    <div className="p-8 flex flex-col justify-between flex-1">
-                                        <div>
-                                            <h3 className="text-[16px] font-black text-slate-800 leading-tight mb-3">
-                                                {megaMenuData[hoveredMenu].promoTitle}
-                                            </h3>
-                                            <p className="text-[12px] text-slate-600 mb-6">
-                                                {megaMenuData[hoveredMenu].promoText}
-                                            </p>
+                                </div>
+                                {/* Right Promo Box */}
+                                <div className="w-[400px] bg-[#111111] p-10 flex flex-col border-l border-white/5 relative z-10">
+                                    <span className="text-[#C6A76B] font-black text-[10px] uppercase tracking-[0.3em] mb-4 block">Design Guide</span>
+                                    <div className="flex-1 bg-[#161616] rounded-xl overflow-hidden flex flex-col border border-white/5 group">
+                                        <div className="h-[220px] overflow-hidden relative">
+                                            <div className="absolute inset-0 bg-[#111111]/40 mix-blend-multiply z-10" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#161616] via-transparent to-transparent z-10 opacity-70" />
+                                            <img src={megaMenuData[hoveredMenu].promoImage} alt={megaMenuData[hoveredMenu].promoTitle} className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-105" />
                                         </div>
-                                        <Link to={`/collection`} className="self-start px-6 py-2.5 bg-transparent border-2 border-slate-800 text-slate-800 text-[11px] font-black uppercase tracking-widest hover:bg-slate-800 hover:text-white transition-all rounded-sm">
-                                            Read More
-                                        </Link>
+                                        <div className="p-8 flex flex-col justify-between flex-1 relative z-20 -mt-8">
+                                            <div>
+                                                <h3 className="text-[18px] font-black text-white leading-tight mb-3">
+                                                    {megaMenuData[hoveredMenu].promoTitle}
+                                                </h3>
+                                                <p className="text-[13px] text-white/50 mb-8 leading-relaxed font-medium">
+                                                    {megaMenuData[hoveredMenu].promoText}
+                                                </p>
+                                            </div>
+                                            <Link onClick={() => setHoveredMenu(null)} to={`/collection`} className="self-start px-8 py-3 bg-transparent border border-[#C6A76B] text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#C6A76B] hover:text-black transition-all rounded-sm">
+                                                Read More
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
 
             {/* Mobile Menu Overlay */}
-            {mobileOpen && (
-                <div className="lg:hidden fixed inset-0 top-[100px] bg-[#0B0B0B] z-40 overflow-y-auto pb-20">
-                    <div className="flex flex-col items-center py-10 space-y-6">
-                        <Link to="/" className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>Home</Link>
-                        {categoryMenus.map(cat => (
-                            <Link key={cat} to={`/collection`} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{cat}</Link>
-                        ))}
-                        {normalMenuItems.slice(1).map(item => (
-                            <Link key={item.name} to={item.link} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{item.name}</Link>
-                        ))}
-                        <button
-                            onClick={() => {
-                                setMobileOpen(false);
-                                setIsBookingModalOpen(true);
-                            }}
-                            className="bg-[#C6A76B] text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest mt-4"
-                        >
-                            Book an appointment
-                        </button>
-                    </div>
-                </div>
-            )}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="lg:hidden fixed inset-0 top-[110px] bg-[#0B0B0B] z-40 overflow-y-auto pb-20"
+                    >
+                        <div className="flex flex-col items-center py-10 space-y-6">
+                            <Link to="/" className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>Home</Link>
+                            {categoryMenus.map(cat => (
+                                <Link key={cat} to={`/collection`} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{cat}</Link>
+                            ))}
+                            {normalMenuItems.slice(1).map(item => (
+                                <Link key={item.name} to={item.link} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{item.name}</Link>
+                            ))}
+                            <button
+                                onClick={() => {
+                                    setMobileOpen(false);
+                                    setIsBookingModalOpen(true);
+                                }}
+                                className="bg-[#C6A76B] text-white px-10 py-4 rounded-sm text-sm font-bold uppercase tracking-widest mt-4"
+                            >
+                                Book an appointment
+                            </button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             <BookingModal isOpen={isBookingModalOpen} onClose={() => setIsBookingModalOpen(false)} />
         </nav>

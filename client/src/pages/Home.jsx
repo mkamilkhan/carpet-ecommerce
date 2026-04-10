@@ -72,6 +72,13 @@ const Home = () => {
                         className="w-full h-full object-cover opacity-20 scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent z-10" />
+                    <div
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{
+                            backgroundImage: 'radial-gradient(circle, rgba(198,167,107,0.14) 1px, transparent 1px)',
+                            backgroundSize: '22px 22px',
+                        }}
+                    />
                 </div>
 
                 <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center z-20">
@@ -141,29 +148,74 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* 5. OUR FLOORING OPTIONS */}
-            <section id="categories" className="py-24 bg-[#0B0B0B]" data-reveal="up">
-                <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl lg:text-5xl font-black uppercase tracking-tighter mb-4">Our Flooring Options</h2>
-                        <p className="text-[#C6A76B] tracking-widest uppercase text-xs font-bold mb-2">Premium flooring solutions for modern homes and commercial spaces.</p>
-                    </div>
+            {/* 5. OUR FLOORING OPTIONS - THE COLLECTION */}
+            <section id="categories" className="py-24 bg-[#0B0B0B] overflow-hidden" data-reveal="up">
+                <style>
+                    {`
+                    @keyframes slideLeft {
+                        from { transform: translateX(0); }
+                        to { transform: translateX(-50%); }
+                    }
+                    .marquee-track {
+                        display: flex;
+                        width: max-content;
+                        animation: slideLeft 40s linear infinite;
+                    }
+                    .marquee-track:hover {
+                        animation-play-state: paused;
+                    }
+                    .marquee-item {
+                        padding-right: 2rem; /* Replaces flex gap */
+                    }
+                    `}
+                </style>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-                        {categories.map((cat, i) => (
-                            <div key={i} className="group cursor-pointer">
-                                <div className="relative aspect-[4/5] overflow-hidden rounded-sm mb-6 border border-white/5 transition-all duration-500 group-hover:border-[#C6A76B]/50">
+                <div className="max-w-[1440px] mx-auto px-6 lg:px-12 mb-16 relative z-10">
+                    <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-8 gap-6">
+                        <div>
+                            <span className="text-[#C6A76B] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">THE COLLECTION</span>
+                            <h2 className="text-5xl lg:text-7xl font-black uppercase tracking-tighter leading-none text-white">Our Flooring Options</h2>
+                        </div>
+                        <p className="text-white/40 tracking-widest uppercase text-[10px] md:text-[11px] font-bold max-w-xs md:text-right">
+                            Premium flooring solutions for modern homes and commercial spaces.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Infinite Scroll Marquee Container */}
+                <div className="relative">
+                    {/* Left & Right shadow fade effects */}
+                    <div className="absolute left-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-r from-[#0B0B0B] to-transparent z-20 pointer-events-none" />
+                    <div className="absolute right-0 top-0 bottom-0 w-16 md:w-48 bg-gradient-to-l from-[#0B0B0B] to-transparent z-20 pointer-events-none" />
+
+                    <div className="marquee-track pl-4">
+                        {/* We duplicate the array to create a perfect seamless loop (5 + 5 items) */}
+                        {[...categories, ...categories].map((cat, i) => (
+                            <Link to={`/collection?category=${encodeURIComponent(cat.title)}`} key={i} className="marquee-item group cursor-pointer w-[300px] lg:w-[450px] flex-shrink-0">
+                                <div className="relative aspect-[4/5] overflow-hidden rounded-xl mb-6 border border-white/5 transition-all duration-500 hover:border-[#C6A76B]/40 hover:shadow-[0_0_40px_rgba(198,167,107,0.15)] shadow-2xl bg-[#111111]">
+                                    
+                                    <div className="absolute inset-0 bg-[#C6A76B]/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                    
                                     <img
                                         src={cat.image}
                                         alt={cat.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-[2s] group-hover:scale-110"
                                     />
-                                    <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                    
+                                    {/* Bottom dark gradient for text legibility */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent z-10 opacity-80" />
+                                    
+                                    <div className="absolute bottom-8 left-8 right-8 z-20 flex items-end justify-between overflow-hidden">
+                                        <h3 className="text-3xl lg:text-4xl font-black uppercase tracking-tighter text-white translate-y-0 group-hover:-translate-y-2 transition-transform duration-500">
+                                            {cat.title}
+                                        </h3>
+                                        <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 delay-75 hover:bg-[#C6A76B] hover:text-black">
+                                            <FiArrowRight size={20} />
+                                        </div>
+                                    </div>
+                                    
                                 </div>
-                                <h3 className="text-center text-lg font-black uppercase tracking-tighter transition-colors duration-300 group-hover:text-[#C6A76B]">
-                                    {cat.title}
-                                </h3>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>
