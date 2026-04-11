@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard';
 
 import PublicLayout from './layouts/PublicLayout';
 import Home from './pages/Home';
+import Offers from './pages/Offers';
 import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
 import About from './pages/About';
@@ -31,7 +32,8 @@ function App() {
       <Routes location={location} key={location.pathname}>
         {/* Public Client Website Routes */}
         <Route path="/" element={<PublicLayout />}>
-          <Route index element={<PageTransition><Home /></PageTransition>} />
+          <Route index element={<PageTransition><Offers /></PageTransition>} />
+          <Route path="home" element={<PageTransition><Home /></PageTransition>} />
           <Route path="collection" element={<PageTransition><Shop /></PageTransition>} />
           <Route path="product/:id" element={<PageTransition><ProductDetail /></PageTransition>} />
           <Route path="about" element={<PageTransition><About /></PageTransition>} />
