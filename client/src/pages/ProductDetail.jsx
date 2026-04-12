@@ -119,6 +119,27 @@ const ProductDetail = () => {
                             {/* Inner subtle glow ring */}
                             <div className="absolute inset-0 border border-[#C6A76B]/20 pointer-events-none mix-blend-overlay"></div>
                         </div>
+
+                        {/* GALLERY THUMBNAILS */}
+                        <div className="mt-6 flex gap-4 overflow-x-auto pb-4 custom-scrollbar">
+                            <button 
+                                onClick={() => setActiveImage(product.image)}
+                                className={`flex-shrink-0 w-24 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === product.image ? 'border-[#C6A76B] ring-2 ring-[#C6A76B]/20' : 'border-white/5 opacity-50 hover:opacity-100'}`}
+                            >
+                                <img src={getImageUrl(product.image)} className="w-full h-full object-cover" alt="Main" />
+                            </button>
+                            
+                            {product.gallery && product.gallery.map((img, idx) => (
+                                <button 
+                                    key={idx}
+                                    onClick={() => setActiveImage(img)}
+                                    className={`flex-shrink-0 w-24 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === img ? 'border-[#C6A76B] ring-2 ring-[#C6A76B]/20' : 'border-white/5 opacity-50 hover:opacity-100'}`}
+                                >
+                                    <img src={getImageUrl(img)} className="w-full h-full object-cover" alt={`Gallery ${idx + 1}`} />
+                                </button>
+                            ))}
+                        </div>
+
                         {/* Decorative background element underneath the picture */}
                         <div className="absolute -inset-4 border border-[#C6A76B]/20 rounded-2xl pointer-events-none -z-10 hidden lg:block translate-x-4 translate-y-4"></div>
                     </div>
