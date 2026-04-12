@@ -3,7 +3,7 @@ import { FiX, FiUploadCloud, FiPlus, FiLoader, FiInfo, FiCheck } from 'react-ico
 import axios from 'axios';
 import { getImageUrl } from '../utils/imagePath';
 
-const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
+const EditProduct = ({ isOpen, onClose, onProductUpdated, product, showNotification }) => {
     const [formData, setFormData] = useState({
         name: '',
         type: '',
@@ -99,12 +99,14 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            setSuccess('Carpet updated successfully! ✨');
-            onProductUpdated();
+            setSuccess('Product Updated Successfully');
+            if (onProductUpdated) onProductUpdated();
+            if (showNotification) showNotification('Product changes saved successfully');
+            
             setTimeout(() => {
                 onClose();
                 setSuccess('');
-            }, 1500);
+            }, 1000);
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to update product');
         } finally {
@@ -113,207 +115,215 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-brand-btn/80 backdrop-blur-md flex items-center justify-center z-[150] p-4">
-            <div className="bg-brand-card rounded-sm w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.5)] animate-fade-in text-brand-light/70 border border-brand-light/50 flex flex-col">
-                <div className="p-8 border-b border-brand-light/50 flex justify-between items-center bg-brand-light/5">
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-xl flex items-center justify-center z-[150] p-4 lg:p-8 overflow-hidden">
+            <div className="bg-[#1A1A1A] rounded-3xl w-full max-w-5xl max-h-full overflow-hidden shadow-2xl border border-white/10 flex flex-col animate-scale-in">
+                
+                {/* Header */}
+                <div className="p-8 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
                     <div>
-                        <h2 className="text-3xl font-black text-white uppercase tracking-tighter italic leading-none">Modify Archive</h2>
-                        <p className="text-[10px] font-black text-[#CB9F3B] uppercase tracking-widest mt-2 leading-none">Update technical specifications for {formData.name}</p>
+                        <h2 className="text-3xl font-extrabold text-white tracking-tight italic">Modify <span className="text-[#CB9F3B]">Product</span></h2>
+                        <p className="text-[10px] font-bold text-white/40 uppercase tracking-[0.3em] mt-2">Inventory Management Suite</p>
                     </div>
-                    <button onClick={onClose} className="p-4 bg-white hover:bg-brand-btn text-black hover:text-brand-light/70 rounded-sm border border-brand-light/50 transition-all active:scale-95">
-                        <FiX size={20} />
+                    <button onClick={onClose} className="w-12 h-12 flex items-center justify-center bg-white/5 hover:bg-rose-500 hover:text-white text-white/40 rounded-full transition-all active:scale-90">
+                        <FiX size={24} />
                     </button>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-10 space-y-10 custom-scrollbar">
+                <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-10 custom-scrollbar">
+                    {/* Feedback */}
                     {error && (
-                        <div className="bg-rose-500/10 text-rose-500 p-5 rounded-sm text-[10px] font-black uppercase tracking-widest border border-rose-500/20 flex items-center gap-4 animate-shake">
+                        <div className="bg-rose-500/10 text-rose-500 p-5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-rose-500/20 flex items-center gap-4 mb-10 animate-shake">
                             <FiInfo size={16} /> {error}
                         </div>
                     )}
 
                     {success && (
-                        <div className="bg-white text-white p-5 rounded-sm text-[10px] font-black uppercase tracking-widest border border-emerald-400/20 flex items-center gap-4 animate-fade-in">
+                        <div className="bg-emerald-500/10 text-emerald-400 p-5 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-emerald-400/20 flex items-center gap-4 mb-10 animate-fade-in">
                             <FiCheck className="animate-pulse" size={16} />
                             {success}
                         </div>
                     )}
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                        
+                        {/* Primary Information */}
+                        <div className="lg:col-span-7 space-y-10">
                             <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Asset Designation *</label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium placeholder:text-brand-light/70/10"
-                                />
+                                <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Core Identification</label>
+                                <div className="space-y-6">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-semibold placeholder:text-white/20"
+                                        placeholder="Product Name"
+                                    />
+                                    
+                                    <div className="grid grid-cols-2 gap-6">
+                                        <select
+                                            name="type"
+                                            value={formData.type}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-semibold appearance-none cursor-pointer"
+                                        >
+                                            <option value="">Select Category</option>
+                                            <option value="Carpet">Carpet</option>
+                                            <option value="Vinyl">Vinyl</option>
+                                            <option value="Laminate">Laminate</option>
+                                            <option value="Engineered Wood">Engineered Wood</option>
+                                            <option value="Commercial Carpet">Commercial Carpet</option>
+                                            <option value="Commercial Vinyl">Commercial Vinyl</option>
+                                            <option value="Rugs">Rugs</option>
+                                        </select>
+
+                                        <select
+                                            name="roomSuitability"
+                                            value={formData.roomSuitability}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-semibold appearance-none cursor-pointer"
+                                        >
+                                            <option value="Living Room">Living Room</option>
+                                            <option value="Bedroom">Bedroom</option>
+                                            <option value="Dining Room">Dining Room</option>
+                                            <option value="Kitchen">Kitchen</option>
+                                            <option value="Bathroom">Bathroom</option>
+                                            <option value="Hallway">Hallway</option>
+                                            <option value="Stairs">Stairs</option>
+                                            <option value="Office">Office</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
 
                             <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Classification *</label>
-                                <select
-                                    name="type"
-                                    value={formData.type}
+                                <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Technical Description</label>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
-                                >
-                                    <option value="Carpet" className="bg-brand-card">Carpet</option>
-                                    <option value="Vinyl" className="bg-brand-card">Vinyl</option>
-                                    <option value="Laminate" className="bg-brand-card">Laminate</option>
-                                    <option value="Engineered Wood" className="bg-brand-card">Engineered Wood</option>
-                                    <option value="Commercial Carpet" className="bg-brand-card">Commercial Carpet</option>
-                                    <option value="Commercial Vinyl" className="bg-brand-card">Commercial Vinyl</option>
-                                    <option value="Rugs" className="bg-brand-card">Rugs</option>
-                                </select>
+                                    rows="5"
+                                    className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all resize-none font-semibold placeholder:text-white/20 shadow-inner"
+                                    placeholder="Provide detailed description..."
+                                ></textarea>
                             </div>
 
-                            <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Architectural Intent *</label>
-                                <select
-                                    name="roomSuitability"
-                                    value={formData.roomSuitability}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium appearance-none cursor-pointer"
-                                >
-                                    <option value="Stairs" className="bg-brand-card">Stairs</option>
-                                    <option value="Bedroom" className="bg-brand-card">Bedroom</option>
-                                    <option value="Lounge" className="bg-brand-card">Lounge</option>
-                                    <option value="Stair Runners" className="bg-brand-card">Stair Runners</option>
-                                    <option value="Hall" className="bg-brand-card">Hall</option>
-                                    <option value="Dining" className="bg-brand-card">Dining</option>
-                                    <option value="Kitchen" className="bg-brand-card">Kitchen</option>
-                                    <option value="Bathroom" className="bg-brand-card">Bathroom</option>
-                                    <option value="Conservatory" className="bg-brand-card">Conservatory</option>
-                                    <option value="Home Office" className="bg-brand-card">Home Office</option>
-                                    <option value="Hallway" className="bg-brand-card">Hallway</option>
-                                    <option value="Living Room" className="bg-brand-card">Living Room</option>
-                                    <option value="Herringbone" className="bg-brand-card">Herringbone</option>
-                                    <option value="Oak" className="bg-brand-card">Oak</option>
-                                    <option value="Grass Carpet" className="bg-brand-card">Grass Carpet</option>
-                                    <option value="Wood Effect" className="bg-brand-card">Wood Effect</option>
-                                    <option value="Marble Effect" className="bg-brand-card">Marble Effect</option>
-                                    <option value="Tile Effect" className="bg-brand-card">Tile Effect</option>
-                                    <option value="Stone Effect" className="bg-brand-card">Stone Effect</option>
-                                    <option value="Patterned" className="bg-brand-card">Patterned</option>
-                                    <option value="Terrazzo" className="bg-brand-card">Terrazzo</option>
-                                    <option value="Victorian" className="bg-brand-card">Victorian</option>
-                                    <option value="Rustic" className="bg-brand-card">Rustic</option>
-                                    <option value="Natural" className="bg-brand-card">Natural</option>
-                                </select>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-2 gap-8">
                                 <div>
-                                    <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-2">Dimensions *</label>
+                                    <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Dimensions</label>
                                     <input
                                         type="text"
                                         name="size"
                                         value={formData.size}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium"
+                                        className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-semibold placeholder:text-white/20"
+                                        placeholder="e.g. 4m & 5m Widths"
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-2">Price Base *</label>
+                                    <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Stock Level</label>
                                     <input
                                         type="number"
-                                        name="price"
-                                        value={formData.price}
+                                        name="stock"
+                                        value={formData.stock}
                                         onChange={handleChange}
                                         required
                                         min="0"
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium"
-                                    />
-                                </div>
-                                <div className="col-span-2">
-                                    <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-2">Promotional Discount (%)</label>
-                                    <input
-                                        type="number"
-                                        name="discount"
-                                        value={formData.discount}
-                                        onChange={handleChange}
-                                        min="0"
-                                        max="100"
-                                        className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium"
+                                        className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-semibold placeholder:text-white/20"
                                     />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="space-y-6">
-                            <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Inventory Count *</label>
-                                <input
-                                    type="number"
-                                    name="stock"
-                                    value={formData.stock}
-                                    onChange={handleChange}
-                                    required
-                                    min="0"
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Chromatic DNA (Hex, Comma separated)</label>
-                                <input
-                                    type="text"
-                                    name="colors"
-                                    value={formData.colors}
-                                    onChange={handleChange}
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all font-medium text-xs"
-                                    placeholder="#434443, #ffffff"
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Narrative Outline</label>
-                                <textarea
-                                    name="description"
-                                    value={formData.description}
-                                    onChange={handleChange}
-                                    required
-                                    rows="3"
-                                    className="w-full px-5 py-4 bg-brand-bg border border-brand-light/50 rounded-sm text-brand-light/70 focus:ring-4 focus:ring-brand-light/5 focus:border-brand-light/20 outline-none transition-all resize-none font-medium"
-                                ></textarea>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-4">
+                        {/* Financial & Media */}
+                        <div className="lg:col-span-5 space-y-10">
+                            <div className="p-8 bg-white/[0.03] rounded-3xl border border-white/5 space-y-8">
                                 <div>
-                                    <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Lead Visual</label>
-                                    <div className="relative border-2 border-dashed border-brand-light/50 rounded-sm h-36 flex flex-col items-center justify-center text-brand-light/70/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
+                                    <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Pricing Architecture</label>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="relative">
+                                            <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[#CB9F3B] font-bold">£</span>
+                                            <input
+                                                type="number"
+                                                name="price"
+                                                value={formData.price}
+                                                onChange={handleChange}
+                                                required
+                                                min="0"
+                                                className="w-full pl-10 pr-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-black text-xl"
+                                            />
+                                        </div>
+                                        <div className="relative">
+                                            <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white/20 font-bold">%</span>
+                                            <input
+                                                type="number"
+                                                name="discount"
+                                                value={formData.discount}
+                                                onChange={handleChange}
+                                                min="0"
+                                                max="100"
+                                                className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-bold text-xl"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {formData.type === 'Carpet' && (
+                                    <div className="animate-fade-in">
+                                        <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Color DNA (HEX Codes)</label>
+                                        <input
+                                            type="text"
+                                            name="colors"
+                                            value={formData.colors}
+                                            onChange={handleChange}
+                                            className="w-full px-6 py-4 bg-[#0F0F0F] border border-white/10 rounded-2xl text-white/60 focus:ring-2 focus:ring-[#CB9F3B]/20 focus:border-[#CB9F3B] outline-none transition-all font-mono text-xs"
+                                            placeholder="#434443, #ffffff (comma separated)"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+
+                            <div>
+                                <label className="block text-[10px] font-black text-[#CB9F3B] uppercase tracking-[0.2em] mb-4">Media Assets</label>
+                                <div className="grid grid-cols-1 gap-6">
+                                    <div className="relative aspect-video rounded-3xl border-2 border-dashed border-white/10 overflow-hidden group hover:border-[#CB9F3B]/50 transition-all cursor-pointer bg-white/[0.02]">
                                         {preview ? (
-                                            <img src={(typeof preview === 'string' && !preview.startsWith('blob:')) ? getImageUrl(preview) : preview} alt="Preview" className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+                                            <img 
+                                                src={(typeof preview === 'string' && !preview.startsWith('blob:')) ? getImageUrl(preview) : preview} 
+                                                alt="Primary" 
+                                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                                            />
                                         ) : (
-                                            <>
-                                                <FiUploadCloud size={24} className="mb-2 group-hover:text-brand-light/70 transition-colors" />
-                                                <span className="text-[9px] font-black uppercase tracking-widest">Primary Texture</span>
-                                            </>
+                                            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                                                <FiUploadCloud size={24} className="text-white/20" />
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-white/20">Primary Visual</span>
+                                            </div>
                                         )}
                                         <input type="file" onChange={handleImageChange} className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
                                     </div>
-                                </div>
-                                <div>
-                                    <label className="block text-[10px] font-black text-white uppercase tracking-widest mb-3">Ensemble Assets</label>
-                                    <div className="relative border-2 border-dashed border-brand-light/50 rounded-sm h-36 flex flex-col items-center justify-center text-brand-light/70/20 cursor-pointer hover:bg-brand-light/5 hover:border-brand-light/20 transition-all overflow-hidden bg-brand-bg/50 group">
+
+                                    <div className="relative h-24 rounded-2xl border-2 border-dashed border-white/10 overflow-hidden group hover:border-[#CB9F3B]/50 transition-all cursor-pointer bg-white/[0.02] flex items-center justify-center px-6">
                                         {galleryPreviews.length > 0 ? (
-                                            <div className="grid grid-cols-2 w-full h-full p-1 gap-1">
-                                                {galleryPreviews.slice(0, 4).map((p, i) => (
-                                                    <img key={i} src={(typeof p === 'string' && !p.startsWith('blob:')) ? getImageUrl(p) : p} className="w-full h-full object-cover rounded-md" />
+                                            <div className="flex gap-2 overflow-hidden h-full py-3">
+                                                {galleryPreviews.map((p, i) => (
+                                                    <img 
+                                                        key={i} 
+                                                        src={(typeof p === 'string' && !p.startsWith('blob:')) ? getImageUrl(p) : p} 
+                                                        className="h-full aspect-square object-cover rounded-lg border border-white/10" 
+                                                    />
                                                 ))}
+                                                {galleryPreviews.length > 5 && <div className="h-full aspect-square bg-white/5 rounded-lg flex items-center justify-center text-[10px] font-bold">+{galleryPreviews.length - 5}</div>}
                                             </div>
                                         ) : (
-                                            <>
-                                                <FiPlus size={24} className="mb-2 group-hover:text-brand-light/70 transition-colors" />
-                                                <span className="text-[9px] font-black uppercase tracking-widest">Sample Matrix</span>
-                                            </>
+                                            <div className="flex items-center gap-4 text-white/20 group-hover:text-[#CB9F3B] transition-colors">
+                                                <FiPlus size={20} />
+                                                <span className="text-[10px] font-black uppercase tracking-widest">Update Gallery Imagery</span>
+                                            </div>
                                         )}
                                         <input type="file" multiple onChange={handleGalleryChange} className="absolute inset-0 opacity-0 cursor-pointer" accept="image/*" />
                                     </div>
@@ -321,23 +331,28 @@ const EditProduct = ({ isOpen, onClose, onProductUpdated, product }) => {
                             </div>
                         </div>
                     </div>
-
-                    <div className="p-8 border-t border-brand-light/50 flex justify-end gap-6 bg-brand-light/5 mt-auto">
-                        <button type="button" onClick={onClose} className="px-8 py-4 text-white hover:text-brand-light/70 font-black uppercase tracking-widest text-[10px] transition-all">Cancel</button>
-                        <button type="submit" disabled={loading || success} className="px-10 py-4 bg-brand-btn hover:opacity-90 text-brand-light/70 rounded-xl font-black uppercase tracking-widest text-[10px] transition-all shadow-xl border border-brand-light/50 active:scale-95 disabled:opacity-50 flex items-center gap-4 min-w-[200px] justify-center">
-                            {loading ? (
-                                <>
-                                    <FiLoader className="animate-spin" size={16} />
-                                    Updating Archive...
-                                </>
-                            ) : success ? (
-                                'Archive Synchronized'
-                            ) : (
-                                'Commit Modifications'
-                            )}
-                        </button>
-                    </div>
                 </form>
+
+                {/* Footer Actions */}
+                <div className="p-8 border-t border-white/5 flex justify-end items-center gap-8 bg-white/[0.02]">
+                    <button type="button" onClick={onClose} className="text-white/40 hover:text-white font-bold uppercase tracking-[0.2em] text-[10px] transition-colors">Discard</button>
+                    <button 
+                        onClick={handleSubmit}
+                        disabled={loading || success} 
+                        className="px-12 py-5 bg-[#CB9F3B] hover:bg-white text-white hover:text-[#CB9F3B] rounded-2xl font-black uppercase tracking-[0.2em] text-[10px] transition-all shadow-2xl disabled:opacity-50 flex items-center gap-4 min-w-[240px] justify-center scale-100 active:scale-95"
+                    >
+                        {loading ? (
+                            <>
+                                <FiLoader className="animate-spin" size={16} />
+                                System Synchronizing...
+                            </>
+                        ) : success ? (
+                            'Changes Commited'
+                        ) : (
+                            'Authenticate Modifications'
+                        )}
+                    </button>
+                </div>
             </div>
         </div>
     );
