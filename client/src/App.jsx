@@ -17,6 +17,15 @@ import Cart from './pages/Cart';
 import Samples from './pages/Samples';
 import Services from './pages/Services';
 import CalculatorPage from './pages/CalculatorPage';
+import FittingService from './pages/FittingService';
+import UpliftRemovalService from './pages/UpliftRemovalService';
+import MeasuringPlanningService from './pages/MeasuringPlanningService';
+import InterestFreeCredit from './pages/InterestFreeCredit';
+import PricePromise from './pages/PricePromise';
+import WearGuarantee from './pages/WearGuarantee';
+import TenYearGuarantee from './pages/TenYearGuarantee';
+import CarpetWhipping from './pages/CarpetWhipping';
+import DeliveryCarePackage from './pages/DeliveryCarePackage';
 
 import Products from './pages/Products';
 import Orders from './pages/Orders';
@@ -41,6 +50,15 @@ function App() {
           <Route path="cart" element={<PageTransition><Cart /></PageTransition>} />
           <Route path="samples" element={<PageTransition><Samples /></PageTransition>} />
           <Route path="services" element={<PageTransition><Services /></PageTransition>} />
+          <Route path="services/fitting" element={<PageTransition><FittingService /></PageTransition>} />
+          <Route path="services/uplift-and-disposal" element={<PageTransition><UpliftRemovalService /></PageTransition>} />
+          <Route path="services/measuring-and-planning" element={<PageTransition><MeasuringPlanningService /></PageTransition>} />
+          <Route path="services/interest-free-credit" element={<PageTransition><InterestFreeCredit /></PageTransition>} />
+          <Route path="services/our-carpet-price-promise" element={<PageTransition><PricePromise /></PageTransition>} />
+          <Route path="services/wear-guarantee" element={<PageTransition><WearGuarantee /></PageTransition>} />
+          <Route path="services/10-year-fitting-guarantee" element={<PageTransition><TenYearGuarantee /></PageTransition>} />
+          <Route path="services/carpet-whipping" element={<PageTransition><CarpetWhipping /></PageTransition>} />
+          <Route path="services/delivery-and-care-package" element={<PageTransition><DeliveryCarePackage /></PageTransition>} />
           <Route path="calculator" element={<PageTransition><CalculatorPage /></PageTransition>} />
         </Route>
 

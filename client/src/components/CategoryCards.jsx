@@ -20,7 +20,7 @@ const CategoryCards = () => {
                         key={idx} 
                         to={card.link}
                         className={`w-[210px] h-[190px] flex flex-col items-center justify-center gap-6 rounded-2xl shadow-[0_15px_45px_rgba(0,0,0,0.15)] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl ${
-                            card.isPromo ? 'bg-[#E31E24] text-white' : 'bg-white text-[#333333]'
+                            card.isPromo ? 'bg-[#EF4444] text-white' : 'bg-white text-[#333333]'
                         }`}
                     >
                         <div className={`${card.isPromo ? 'text-white' : 'text-[#333333]/40'} mb-2`}>

@@ -47,6 +47,7 @@ const Navbar = () => {
         { name: 'Laminate', link: '/collection?category=Laminate' },
         { name: 'Vinyl', link: '/collection?category=Vinyl' },
         { name: 'Wood', link: '/collection?category=Wood' },
+        { name: 'Rugs', link: '/collection?category=Rugs' },
         { name: 'Our Story', link: '/about' },
         { name: 'Services', link: '/services' },
         { name: 'Calculator', link: '/calculator' },
@@ -59,7 +60,7 @@ const Navbar = () => {
         { name: 'Calculator', link: '/calculator' },
     ];
 
-    const categoryMenus = ['Carpets', 'Laminate', 'Vinyl', 'Wood'];
+    const categoryMenus = ['Carpets', 'Laminate', 'Vinyl', 'Wood', 'Rugs'];
 
     const megaMenuData = {
         'Carpets': {
@@ -112,20 +113,35 @@ const Navbar = () => {
             link: '/collection?category=vinyl'
         },
         'Wood': {
-            sidebar: ['Design', 'Room', 'Colour', 'Price', 'More +', 'Ideas Hub'],
+            sidebar: ['Style', 'Design', 'Room', 'Colour', 'Features', 'Ideas Hub', 'More +'],
             rooms: [
-                { name: 'Herringbone', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Oak', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Brushed & Oiled', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Lacquered', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Rustic', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Natural', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Wood Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Marble Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Tile Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Stone Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Patterned', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Terrazzo', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Victorian', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
             ],
-            promoImage: 'https://images.unsplash.com/photo-1542385262-cdf06b2abcb8?q=80&w=600',
-            promoTitle: 'Oiled vs Lacquered Engineered Wood',
-            promoText: 'Find out which of these finishes will work better in your space.',
-            link: '/collection?category=wood'
-        }
+            promoImage: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=600',
+            promoTitle: 'Do you need underlay for vinyl flooring?',
+            promoText: 'Find out your options with our handy guide.',
+            link: '/collection?category=Wood'
+        },
+        'Rugs': {
+            sidebar: ['Size', 'Style', 'Colour', 'Material', 'Room', 'More +'],
+            rooms: [
+                { name: 'Living Room', icon: <FaCouch size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Bedroom', icon: <FaBed size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Dining Room', icon: <FaUtensils size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Hallway', icon: <FaHome size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Outdoor', icon: <FaBuilding size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+            ],
+            promoImage: 'https://images.unsplash.com/photo-1600166898405-da9535204843?q=80&w=600',
+            promoTitle: 'How to Choose the Right Rug Size',
+            promoText: 'Find the perfect fit for your room with our comprehensive rug sizing guide.',
+            link: '/collection?category=Rugs'
+        },
     };
 
     useEffect(() => {
@@ -157,11 +173,11 @@ const Navbar = () => {
             className="fixed top-0 z-[100] w-full shadow-lg"
             onMouseLeave={() => setHoveredMenu(null)}
         >
-            {/* 1. RED PROMOTIONAL TOP BAR */}
-            <div className="h-[35px] bg-[#E31E24] flex items-center justify-center overflow-hidden gap-1">
+            {/* 1. LIGHT RED PROMOTIONAL TOP BAR */}
+            <div className="h-[35px] bg-[#EF4444] flex items-center justify-center overflow-hidden gap-1">
                 <span className="text-white text-[11px] lg:text-[13px] font-bold uppercase tracking-widest leading-none">
                     <span className="font-black">50% OFF</span> 100s of carpets — 
-                    <Link to="/collection?onSale=true" className="underline ml-1">Browse Here</Link>
+                    <Link to="/collection?onSale=true" className="underline ml-1 font-black">Browse Here</Link>
                     <span className="ml-1 opacity-90">— Many Offers End Tuesday</span>
                 </span>
             </div>
@@ -299,16 +315,16 @@ const Navbar = () => {
                                         setHoveredMenu(null);
                                         setActiveTab(tab.name);
                                     }}
-                                    className={`h-full px-6 flex items-center text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
+                                    className={`h-full px-4 xl:px-6 flex items-center text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
                                         tab.name === 'OFFERS' 
-                                            ? (isActive ? 'bg-[#E31E24] text-white' : 'text-[#333333] hover:text-[#E31E24]')
-                                            : (isActive ? 'text-[#E31E24]' : 'text-[#333333] hover:text-[#E31E24]')
+                                            ? (isActive ? 'bg-[#EF4444] text-white' : 'text-[#333333] hover:text-[#EF4444]')
+                                            : (isActive ? 'text-[#EF4444]' : 'text-[#333333] hover:text-[#EF4444]')
                                     }`}
                                 >
                                     {tab.name}
                                 </Link>
                                 {isCategory && (
-                                    <span className={`absolute bottom-0 left-0 h-1 bg-[#E31E24] transition-all duration-300 ${hoveredMenu === tab.name ? 'w-full' : 'w-0'}`} />
+                                    <span className={`absolute bottom-0 left-0 h-1 bg-[#EF4444] transition-all duration-300 ${hoveredMenu === tab.name ? 'w-full' : 'w-0'}`} />
                                 )}
                             </div>
                         );
@@ -325,7 +341,7 @@ const Navbar = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                            className="absolute top-0 left-0 w-full bg-[#111111] text-white shadow-[0_30px_60px_rgba(0,0,0,0.8)] border-t border-[#E31E24]/20 overflow-hidden"
+                            className="absolute top-0 left-0 w-full bg-[#111111] text-white shadow-[0_30px_60px_rgba(0,0,0,0.8)] border-t border-[#EF4444]/20 overflow-hidden"
                             onMouseEnter={() => setHoveredMenu(hoveredMenu)}
                             onMouseLeave={() => setHoveredMenu(null)}
                         >
@@ -334,9 +350,9 @@ const Navbar = () => {
                             <div className="flex max-w-[1440px] mx-auto min-h-[400px]">
                                 <div className="flex-1 p-10 bg-[#0B0B0B] relative">
                                     <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#C7A76B]/5 rounded-full blur-[100px] pointer-events-none" />
-                                    <div className="relative z-10 grid grid-cols-4 gap-6">
+                                    <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                                         {megaMenuData[hoveredMenu].rooms.map(room => (
-                                            <Link onClick={() => setHoveredMenu(null)} to={`/collection?category=${encodeURIComponent(hoveredMenu)}&room=${encodeURIComponent(room.name)}`} key={room.name} className="group bg-[#161616] rounded-xl p-8 flex flex-col items-center justify-center shadow-lg border border-white/5 transition-all duration-300 hover:border-[#C7A76B]/40 hover:shadow-[0_0_30px_rgba(199,167,107,0.15)] hover:-translate-y-1">
+                                            <Link onClick={() => setHoveredMenu(null)} to={`/collection?category=${encodeURIComponent(hoveredMenu)}&room=${encodeURIComponent(room.name)}`} key={room.name} className="group bg-[#161616] rounded-xl p-4 md:p-8 flex flex-col items-center justify-center shadow-lg border border-white/5 transition-all duration-300 hover:border-[#C7A76B]/40 hover:shadow-[0_0_30px_rgba(199,167,107,0.15)] hover:-translate-y-1">
                                                 <div className="text-white/30 group-hover:text-[#C7A76B] transition-colors duration-300 mb-4 scale-110 group-hover:scale-125">
                                                     {React.cloneElement(room.icon, { className: 'currentColor' })}
                                                 </div>
@@ -387,7 +403,14 @@ const Navbar = () => {
                         <div className="flex flex-col items-center py-10 space-y-6">
                             <Link to="/" className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>Home</Link>
                             {categoryMenus.map(cat => (
-                                <Link key={cat} to={`/collection`} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{cat}</Link>
+                                <Link 
+                                    key={cat} 
+                                    to={`/collection?category=${cat}`} 
+                                    className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B] transition-colors" 
+                                    onClick={() => setMobileOpen(false)}
+                                >
+                                    {cat}
+                                </Link>
                             ))}
                             {normalMenuItems.slice(1).map(item => (
                                 <Link key={item.name} to={item.link} className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>{item.name}</Link>

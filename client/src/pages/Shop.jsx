@@ -272,6 +272,14 @@ const Shop = () => {
                         <div className="flex justify-center items-center py-40">
                             <div className="w-12 h-12 border-4 border-white/5 border-t-[#C6A76B] rounded-full animate-spin" />
                         </div>
+                    ) : currentProducts.length === 0 ? (
+                        <div className="flex flex-col justify-center items-center py-32 border border-white/5 bg-[#111111] rounded-sm shadow-xl">
+                            <span className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.4em] mb-4">Inventory Notice</span>
+                            <h2 className="text-3xl font-black uppercase tracking-widest text-white">No Data Available</h2>
+                            <p className="text-white/40 mt-4 text-[12px] uppercase tracking-widest text-center max-w-sm leading-relaxed font-bold">
+                                We currently do not have any products that match this collection.
+                            </p>
+                        </div>
                     ) : (
                         <div className="flex flex-col gap-12">
                             <motion.div 

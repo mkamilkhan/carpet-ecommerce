@@ -21,7 +21,7 @@ const OffersHero = () => {
 
             <div className="relative max-w-[1440px] mx-auto px-6 lg:px-12 w-full flex flex-col items-center justify-center z-20 text-center">
                 <div className="space-y-4" data-reveal="up">
-                    <div className="inline-block bg-[#E31E24] mt-32 text-white px-6 py-2 rounded-none text-[10px] font-black uppercase tracking-[0.3em] mb-4 shadow-xl">
+                    <div className="inline-block bg-[#EF4444] mt-32 text-white px-6 py-2 rounded-none text-[10px] font-black uppercase tracking-[0.3em] mb-4 shadow-xl border border-white/10">
                         Limited Time: 50% OFF 100s of Carpets
                     </div>
 
@@ -53,7 +53,8 @@ const OffersHero = () => {
                             { name: 'Vinyl', link: '/collection?category=Vinyl' },
                             { name: 'Laminate', link: '/collection?category=Laminate' },
                             { name: 'Luxury Vinyl', link: '/collection?category=Vinyl' },
-                            { name: 'Engineered Wood', link: '/collection?category=Wood' }
+                            { name: 'Wood', link: '/collection?category=Vinyl' },
+                            { name: 'Rugs', link: '/collection?category=Rugs' }
                         ].map(cat => (
                             <Link 
                                 key={cat.name} 

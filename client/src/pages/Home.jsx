@@ -55,6 +55,7 @@ const Home = () => {
         { title: 'Vinyl', image: vinylImg },
         { title: 'Wood Flooring', image: woodImg },
         { title: 'Engineered Wood', image: engineeredWoodImg },
+        { title: 'Rugs', image: 'https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=800&q=80' },
     ];
 
     return (

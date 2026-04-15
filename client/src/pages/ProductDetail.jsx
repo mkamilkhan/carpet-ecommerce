@@ -223,22 +223,24 @@ const ProductDetail = () => {
                                 </div>
                             </div>
                             
-                            <div className="mb-8 border-b border-white/10 pb-6">
-                                <span className="text-white/40 text-xs uppercase tracking-widest font-bold block mb-4">Select Finish</span>
-                                <div className="flex gap-2 flex-wrap">
-                                    {(product.colors && product.colors.length > 0 ? product.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).map((color, i) => (
-                                        <button
-                                            key={i}
-                                            onClick={() => setSelectedColor(color)}
-                                            className={`w-8 h-8 rounded-sm border-2 transition-all flex items-center justify-center ${selectedColor === color ? 'border-[#C6A76B] scale-110 shadow-[0_0_10px_rgba(198,167,107,0.5)]' : 'border-white/10 hover:border-white/40'}`}
-                                            style={{ backgroundColor: color }}
-                                            title={`Finish Option ${i + 1}`}
-                                        >
-                                            {selectedColor === color && <FiCheck className="text-black drop-shadow-md" size={16} />}
-                                        </button>
-                                    ))}
+                            {['Carpets', 'Rugs'].includes(product.type) && (
+                                <div className="mb-8 border-b border-white/10 pb-6">
+                                    <span className="text-white/40 text-xs uppercase tracking-widest font-bold block mb-4">Select Finish</span>
+                                    <div className="flex gap-2 flex-wrap">
+                                        {(product.colors && product.colors.length > 0 ? product.colors : ['#E5E1D8', '#B7A99A', '#8D7E71', '#5C544E', '#2D2926']).map((color, i) => (
+                                            <button
+                                                key={i}
+                                                onClick={() => setSelectedColor(color)}
+                                                className={`w-8 h-8 rounded-sm border-2 transition-all flex items-center justify-center ${selectedColor === color ? 'border-[#C6A76B] scale-110 shadow-[0_0_10px_rgba(198,167,107,0.5)]' : 'border-white/10 hover:border-white/40'}`}
+                                                style={{ backgroundColor: color }}
+                                                title={`Finish Option ${i + 1}`}
+                                            >
+                                                {selectedColor === color && <FiCheck className="text-black drop-shadow-md" size={16} />}
+                                            </button>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
                             <div>
                                 <div className="flex items-center gap-3 text-[#C6A76B] font-black uppercase tracking-[0.2em] mb-6">

@@ -15,46 +15,67 @@ const Services = () => {
 
     const servicesGrid = [
         {
-            title: "Expert Fitting",
-            desc: "Our master installers ensure every plank and thread is laid with absolute precision, delivering a finish that defines architectural excellence.",
+            title: "We can arrange fitting",
+            desc: "Sit back, relax and let professional fitters install your new flooring – we can arrange delivery and fitting in days",
             img: "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?auto=format&fit=crop&q=80&w=800",
-            tag: "Precision"
+            tag: "Expert Fit",
+            link: "/services/fitting"
         },
         {
-            title: "Uplift & Disposal",
-            desc: "Let us handle the complexity of removal. We efficiently uplift and dispose of your existing flooring, leaving a clean canvas for your new installation.",
+            title: "Uplift & Removal Service",
+            desc: "It’s out with the old floor and in with the new! We can arrange for the hard work to be taken care of.",
             img: "https://images.unsplash.com/photo-1595844730298-b960fa25e9e3?auto=format&fit=crop&q=80&w=800",
-            tag: "Efficiency"
+            tag: "Hassle-Free",
+            link: "/services/uplift-and-disposal"
         },
         {
-            title: "Home Consultation",
-            desc: "Our experts bring the showroom to your sanctuary. Professional measuring and design advice tailored to your specific lighting and space.",
+            title: "Free Measuring & Planning",
+            desc: "Book a home visit and we’ll bring our store to you!",
             img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=800",
-            tag: "Bespoke"
+            tag: "Planning",
+            link: "/services/measuring-and-planning"
         },
         {
-            title: "0% APR Finance",
-            desc: "Investment in luxury made accessible. Spread the cost of your premium flooring with our flexible interest-free credit options.",
+            title: "Interest Free Credit",
+            desc: "There’s no deposit to pay and 0% APR with our interest free credit option.",
             img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=800",
-            tag: "Investment"
+            tag: "Finance",
+            link: "/services/interest-free-credit"
         },
         {
-            title: "Atelier Guarantee",
-            desc: "Peace of mind for the next decade. We provide comprehensive 10-year guarantees on all professional installations across London.",
+            title: "Our Carpet Price Promise",
+            desc: "Get the carpet of your dreams and save money at the same time!",
+            img: "https://images.unsplash.com/photo-1600166898405-da9535204843?auto=format&fit=crop&w=800&q=80",
+            tag: "Value",
+            link: "/services/our-carpet-price-promise"
+        },
+        {
+            title: "Flooring guarantees",
+            desc: "Enjoy peace of mind for years to come with free guarantees on many of our carpets and floors",
             img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
-            tag: "Longevity"
+            tag: "Security",
+            link: "/services/wear-guarantee"
         },
         {
-            title: "Custom Whipping",
-            desc: "Transform your favorite textures into bespoke runners and rugs. Our artisan whipping service adds the final touch of luxury to your project.",
+            title: "10-year Fitting Guarantee",
+            desc: "We promise to fix any carpet installation issues for free!",
+            img: "https://images.unsplash.com/photo-1588691520630-f5a6b0c611ff?auto=format&fit=crop&w=800&q=80",
+            tag: "Guarantee",
+            link: "/services/10-year-fitting-guarantee"
+        },
+        {
+            title: "Carpet Whipping",
+            desc: "Create made-to-measure rugs and stair runners from your favourite carpet.",
             img: "https://images.unsplash.com/photo-1620641788421-7a1c34a6a43d?auto=format&fit=crop&q=80&w=800",
-            tag: "Artisanal"
+            tag: "Bespoke",
+            link: "/services/carpet-whipping"
         },
         {
-            title: "Care Package",
-            desc: "Expert maintenance and protection for your premium floors. Our detailed care kits and professional advice ensure your investment remains flawless.",
+            title: "Delivery & Care Package",
+            desc: "From delivery to your door to arranging hassle-free fitting, let us take care of everything!",
             img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800",
-            tag: "Longevity"
+            tag: "Complete",
+            link: "/services/delivery-and-care-package"
         }
     ];
 
@@ -81,8 +102,11 @@ const Services = () => {
                     <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-none text-white">
                         Uncompromising <br /><span className="text-[#C6A76B] italic">Service.</span>
                     </h1>
-                    <p className="text-[#BFBFBF] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto uppercase tracking-wide text-xs opacity-80 font-bold">
-                        From initial concept to master fitting, we manage every detail of your project. Luxury that extends beyond the product.
+                    <p className="text-[#BFBFBF] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto tracking-wide text-xs opacity-80 font-bold mb-4">
+                        We have a huge selection of extra services to choose from when you buy your flooring from us. Did you know we can arrange to remove and dispose of your old flooring before fitting your new one? We also offer a free measuring and planning service, as well as interest free credit, to make it as easy as possible to turn your dream floor into a reality.
+                    </p>
+                    <p className="text-[#C6A76B] text-lg font-black uppercase tracking-widest">
+                        Whatever you need, MFA Floors will come to the rescue!
                     </p>
                 </div>
             </div>
@@ -128,9 +152,9 @@ const Services = () => {
                                 <p className="text-[#BFBFBF]/60 text-sm leading-relaxed mb-10 min-h-[60px]">
                                     {service.desc}
                                 </p>
-                                <a href="/contact" className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] text-[#C6A76B] hover:gap-5 transition-all">
-                                    Enquire Now <FiArrowRight />
-                                </a>
+                                <Link to={service.link || '/contact'} className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] text-[#C6A76B] hover:gap-5 transition-all">
+                                    Read More <FiArrowRight />
+                                </Link>
                             </div>
                         </div>
                     ))}
