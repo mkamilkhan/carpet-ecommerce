@@ -27,7 +27,6 @@ const Footer = () => {
         { name: 'Carpet', link: '/collection?category=Carpets' },
         { name: 'Vinyl Flooring', link: '/collection?category=Vinyl' },
         { name: 'Laminate Flooring', link: '/collection?category=Laminate' },
-        { name: 'Luxury Vinyl Tiles', link: '/collection?category=Vinyl' },
         { name: 'Engineered Wood Flooring', link: '/collection?category=Wood' },
         { name: 'Herringbone Flooring', link: '/collection?category=Wood' },
         { name: 'Rugs', link: '/collection?category=Rugs' },
@@ -83,8 +82,22 @@ const Footer = () => {
     return (
         <footer className="bg-[#0A0A0A] text-white pt-20 pb-8 border-t border-white/5 font-sans">
             <div className="max-w-[1440px] mx-auto px-6 lg:px-12">
+                {/* Logo & Brand Description */}
+                <div className="mb-14 pb-10 border-b border-white/5">
+                    <div className="max-w-sm">
+                        <div className="mb-5">
+                            <span className="text-2xl font-black uppercase tracking-[0.15em] text-white">
+                                MFA <span className="text-[#C6A76B]">FLOORS</span>
+                            </span>
+                        </div>
+                        <p className="text-[#BFBFBF]/70 text-sm leading-relaxed font-medium">
+                            MFA offers premium flooring solutions with a focus on quality and craftsmanship. Our expert team is dedicated to transforming your spaces with beautiful, durable floors. Experience the difference with MFA Floors.
+                        </p>
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-16">
-                    
+
                     {/* Column 1: About */}
                     <div>
                         <h4 className="text-white text-[13px] font-black uppercase tracking-wider mb-6">About MFA Floors</h4>
@@ -116,9 +129,9 @@ const Footer = () => {
                             Receive the latest offers, promotions and MFA Floors news delivered straight to your inbox with our exclusive email newsletter.
                         </p>
                         <form className="relative border-b border-[#BFBFBF] hover:border-[#C6A76B] focus-within:border-[#C6A76B] transition-colors pb-2">
-                            <input 
-                                type="email" 
-                                placeholder="Enter email address" 
+                            <input
+                                type="email"
+                                placeholder="Enter email address"
                                 className="w-full bg-transparent outline-none text-white placeholder:text-[#BFBFBF]/60 text-[14px]"
                                 required
                             />
@@ -152,7 +165,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="mt-8 text-center lg:text-left text-white/30 text-[10px] font-medium tracking-widest uppercase">
                     © {new Date().getFullYear()} MFA Floors London. All Rights Reserved.
                 </div>

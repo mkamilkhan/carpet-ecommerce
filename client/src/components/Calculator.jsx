@@ -174,7 +174,7 @@ const Calculator = ({ productName = null, productPrice = null }) => {
     };
 
     return (
-        <div className="bg-[#111111] border border-white/10 rounded-2xl p-8 lg:p-12 shadow-2xl">
+        <div className="bg-[#111111] border border-white/10 rounded-2xl p-4 lg:p-12 shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 {/* Inputs */}
                 <div className="space-y-8">
@@ -355,13 +355,13 @@ const Calculator = ({ productName = null, productPrice = null }) => {
                     <div className="mt-12 pt-8 border-t border-[#C6A76B]/20">
                         <div className="flex justify-between items-end mb-8">
                             <span className="text-[#C6A76B] text-[12px] font-black uppercase tracking-[0.4em]">TOTAL PRICE</span>
-                            <span className="text-5xl font-black text-white tracking-tighter">£{results.totalPrice}</span>
+                            <span className="text-3xl font-black text-white tracking-tighter">£{results.totalPrice}</span>
                         </div>
                         <button
                             onClick={handleDownloadPDF}
                             className="w-full bg-[#C6A76B] text-white py-5 rounded-sm font-black text-[12px] uppercase tracking-[0.4em] hover:bg-[#b0945d] transition-all shadow-xl"
                         >
-                            Download Instant Quote PDF
+                            Download PDF
                         </button>
                     </div>
                 </div>

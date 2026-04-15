@@ -24,23 +24,23 @@ const Shop = () => {
 
     const { addToCart, addToSamples, cartItems, sampleItems } = useCart();
 
-    const categories = ['All', 'Carpet', 'Vinyl', 'Laminate', 'Engineered Wood', 'Commercial Carpet', 'Commercial Vinyl', 'Rugs'];
+    const categories = ['All', 'Carpets', 'Vinyl Flooring', 'Laminate Flooring', 'Engineered Wood Flooring', 'Commercial Carpet', 'Commercial Vinyl', 'Rugs'];
 
     const accordionData = [
         {
-            category: 'Carpet',
+            category: 'Carpets',
             subcategories: ['Stairs', 'Bedroom', 'Lounge', 'Stair Runners', 'Hall', 'Dining', 'Conservatory', 'Home Office', 'Grass Carpet', 'Wall-to-Wall Carpet']
         },
         {
-            category: 'Vinyl',
-            subcategories: ['Wood Effect', 'Marble Effect', 'Tile Effect', 'Stone Effect', 'Patterned', 'Terrazzo', 'Victorian', 'Arcadia', 'Rodin']
+            category: 'Vinyl Flooring',
+            subcategories: ['Wood Effect', 'Marble Effect', 'Tile Effect', 'Stone Effect', 'Patterned', 'Terrazzo', 'Victorian']
         },
         {
-            category: 'Laminate',
+            category: 'Laminate Flooring',
             subcategories: ['Lounge', 'Kitchen', 'Bathroom', 'Bedroom', 'Hallway', 'Conservatory', 'Dining']
         },
         {
-            category: 'Engineered Wood',
+            category: 'Engineered Wood Flooring',
             subcategories: ['Herringbone', 'Oak', 'Brushed & Oiled', 'Lacquered', 'Rustic', 'Natural']
         },
         {
@@ -103,10 +103,22 @@ const Shop = () => {
         const roomParam = queryParams.get('room');
 
         if (category && category !== 'All') {
-            const catBase = category.trim().toLowerCase().replace(/s$/, '');
-            result = result.filter(p =>
-                p.type?.trim().toLowerCase().replace(/s$/, '') === catBase
-            );
+            const catLower = category.toLowerCase();
+            result = result.filter(p => {
+                const typeLower = (p.type || '').toLowerCase();
+
+                // Flexible mapping
+                if (catLower.includes('carpet') && typeLower.includes('carpet')) return true;
+                if (catLower.includes('vinyl') && typeLower.includes('vinyl')) return true;
+                if (catLower.includes('wood') && typeLower.includes('wood')) return true;
+                if (catLower.includes('laminate') && typeLower.includes('laminate')) return true;
+                if (catLower.includes('rug') && typeLower.includes('rug')) return true;
+
+                // Fallback to strict base matching
+                const catBase = catLower.replace(/s$/, '').trim();
+                const typeBase = typeLower.replace(/s$/, '').trim();
+                return catBase === typeBase;
+            });
         }
 
         if (roomParam) {
@@ -175,7 +187,7 @@ const Shop = () => {
 
             <div className="max-w-[1440px] mx-auto px-6 lg:px-6 mt-10 lg:mt-32 relative z-20 flex flex-col lg:flex-row gap-1 items-start" data-reveal="up">
                 {/* LEFT SIDEBAR (Accordion) */}
-                <div className="w-full lg:w-72 shrink-0 bg-[#111111] border border-white/5 shadow-2xl rounded-sm p-8 sticky top-32">
+                <div className="w-full lg:w-72 shrink-0 bg-[#111111] border border-white/5 shadow-2xl rounded-sm p-6 lg:p-8 lg:sticky lg:top-32 z-[40]">
                     <h3 className="text-[#C6A76B] text-[10px] font-black uppercase tracking-[0.4em] mb-8 border-b border-white/5 pb-4">Refine Search</h3>
 
                     {/* SEARCH */}
@@ -282,13 +294,13 @@ const Shop = () => {
                         </div>
                     ) : (
                         <div className="flex flex-col gap-12">
-                            <motion.div 
+                            <motion.div
                                 layout
-                                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-3 gap-y-12"
+                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 lg:gap-x-3 lg:gap-y-12"
                             >
                                 <AnimatePresence mode="popLayout">
                                     {currentProducts.map((p) => (
-                                        <motion.div 
+                                        <motion.div
                                             key={p._id}
                                             layout
                                             initial={{ opacity: 0, scale: 0.9 }}

@@ -23,7 +23,7 @@ const Navbar = () => {
     useEffect(() => {
         const path = location.pathname;
         const search = location.search;
-        
+
         if (path === '/') setActiveTab('OFFERS');
         else if (path === '/home') setActiveTab('Home');
         else if (path === '/about') setActiveTab('Our Story');
@@ -44,9 +44,9 @@ const Navbar = () => {
         { name: 'OFFERS', link: '/' },
         { name: 'Home', link: '/home' },
         { name: 'Carpets', link: '/collection?category=Carpets' },
-        { name: 'Laminate', link: '/collection?category=Laminate' },
-        { name: 'Vinyl', link: '/collection?category=Vinyl' },
-        { name: 'Wood', link: '/collection?category=Wood' },
+        { name: 'Laminate', link: '/collection?category=Laminate Flooring' },
+        { name: 'Vinyl', link: '/collection?category=Vinyl Flooring' },
+        { name: 'Wood', link: '/collection?category=Engineered Wood Flooring' },
         { name: 'Rugs', link: '/collection?category=Rugs' },
         { name: 'Our Story', link: '/about' },
         { name: 'Services', link: '/services' },
@@ -108,25 +108,25 @@ const Navbar = () => {
                 { name: 'Victorian', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
             ],
             promoImage: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=600',
-            promoTitle: 'Do you need underlay for vinyl flooring?',
+            promoTitle: 'Vinyl Flooring Guide',
             promoText: 'Find out your options with our handy guide.',
-            link: '/collection?category=vinyl'
+            link: '/collection?category=Vinyl Flooring'
         },
+
         'Wood': {
-            sidebar: ['Style', 'Design', 'Room', 'Colour', 'Features', 'Ideas Hub', 'More +'],
+            sidebar: ['Design', 'Room', 'Colour', 'Price', 'More +', 'Ideas Hub'],
             rooms: [
-                { name: 'Wood Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Marble Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Tile Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Stone Effect', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Patterned', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Terrazzo', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
-                { name: 'Victorian', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Herringbone', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Oak', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Brushed & Oiled', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Lacquered', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Rustic', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
+                { name: 'Natural', icon: <FiBox size={32} className="text-black/60 mb-2 group-hover:text-[#C6A76B] transition-colors" /> },
             ],
-            promoImage: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=600',
-            promoTitle: 'Do you need underlay for vinyl flooring?',
-            promoText: 'Find out your options with our handy guide.',
-            link: '/collection?category=Wood'
+            promoImage: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=600',
+            promoTitle: 'Engineered Wood Guide',
+            promoText: 'Timeless elegance for any room in your home.',
+            link: '/collection?category=Engineered Wood Flooring'
         },
         'Rugs': {
             sidebar: ['Size', 'Style', 'Colour', 'Material', 'Room', 'More +'],
@@ -169,14 +169,14 @@ const Navbar = () => {
     }, [searchQuery]);
 
     return (
-        <nav 
+        <nav
             className="fixed top-0 z-[100] w-full shadow-lg"
             onMouseLeave={() => setHoveredMenu(null)}
         >
             {/* 1. LIGHT RED PROMOTIONAL TOP BAR */}
             <div className="h-[35px] bg-[#EF4444] flex items-center justify-center overflow-hidden gap-1">
                 <span className="text-white text-[11px] lg:text-[13px] font-bold uppercase tracking-widest leading-none">
-                    <span className="font-black">50% OFF</span> 100s of carpets — 
+                    <span className="font-black">50% OFF</span> 100s of carpets —
                     <Link to="/collection?onSale=true" className="underline ml-1 font-black">Browse Here</Link>
                     <span className="ml-1 opacity-90">— Many Offers End Tuesday</span>
                 </span>
@@ -230,16 +230,16 @@ const Navbar = () => {
                                                                     <p className="text-[9px] font-bold text-[#C7A76B] uppercase tracking-widest mt-1.5">{product.type}</p>
                                                                 </div>
                                                                 <div className="w-14 h-14 rounded-sm overflow-hidden flex-shrink-0 border border-black/5 shadow-sm transform transition-transform duration-500 group-hover/item:scale-105">
-                                                                    <img 
-                                                                        src={getImageUrl(product.image)} 
-                                                                        alt={product.name} 
-                                                                        className="w-full h-full object-cover" 
+                                                                    <img
+                                                                        src={getImageUrl(product.image)}
+                                                                        alt={product.name}
+                                                                        className="w-full h-full object-cover"
                                                                     />
                                                                 </div>
                                                             </Link>
                                                         ))}
                                                     </div>
-                                                    <Link 
+                                                    <Link
                                                         to={`/collection?search=${searchQuery}`}
                                                         onClick={() => {
                                                             setSearchQuery('');
@@ -302,7 +302,7 @@ const Navbar = () => {
                     {navTabs.map((tab) => {
                         const isCategory = categoryMenus.includes(tab.name);
                         const isActive = activeTab === tab.name || (isCategory && hoveredMenu === tab.name);
-                        
+
                         return (
                             <div
                                 key={tab.name}
@@ -315,11 +315,10 @@ const Navbar = () => {
                                         setHoveredMenu(null);
                                         setActiveTab(tab.name);
                                     }}
-                                    className={`h-full px-4 xl:px-6 flex items-center text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${
-                                        tab.name === 'OFFERS' 
-                                            ? (isActive ? 'bg-[#EF4444] text-white' : 'text-[#333333] hover:text-[#EF4444]')
-                                            : (isActive ? 'text-[#EF4444]' : 'text-[#333333] hover:text-[#EF4444]')
-                                    }`}
+                                    className={`h-full px-4 xl:px-6 flex items-center text-[11px] font-black uppercase tracking-widest transition-all duration-300 ${tab.name === 'OFFERS'
+                                        ? (isActive ? 'bg-[#EF4444] text-white' : 'text-[#333333] hover:text-[#EF4444]')
+                                        : (isActive ? 'text-[#EF4444]' : 'text-[#333333] hover:text-[#EF4444]')
+                                        }`}
                                 >
                                     {tab.name}
                                 </Link>
@@ -336,7 +335,7 @@ const Navbar = () => {
             <div className="relative">
                 <AnimatePresence>
                     {hoveredMenu && megaMenuData[hoveredMenu] && (
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: -10 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
@@ -393,7 +392,7 @@ const Navbar = () => {
             {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {mobileOpen && (
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
@@ -401,12 +400,12 @@ const Navbar = () => {
                         className="lg:hidden fixed inset-0 top-[110px] bg-[#0B0B0B] z-40 overflow-y-auto pb-20"
                     >
                         <div className="flex flex-col items-center py-10 space-y-6">
-                            <Link to="/" className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>Home</Link>
+                            <Link to="/home" className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B]" onClick={() => setMobileOpen(false)}>Home</Link>
                             {categoryMenus.map(cat => (
-                                <Link 
-                                    key={cat} 
-                                    to={`/collection?category=${cat}`} 
-                                    className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B] transition-colors" 
+                                <Link
+                                    key={cat}
+                                    to={`/collection?category=${cat}`}
+                                    className="text-lg font-bold uppercase tracking-[0.2em] text-white hover:text-[#C6A76B] transition-colors"
                                     onClick={() => setMobileOpen(false)}
                                 >
                                     {cat}

@@ -24,7 +24,7 @@ const Services = () => {
         {
             title: "Uplift & Removal Service",
             desc: "It’s out with the old floor and in with the new! We can arrange for the hard work to be taken care of.",
-            img: "https://images.unsplash.com/photo-1595844730298-b960fa25e9e3?auto=format&fit=crop&q=80&w=800",
+            img: "https://contenu.nyc3.cdn.digitaloceanspaces.com/journalist%2F9b9c4465-a87c-4c9d-ab18-7fd47943cb0f%2Fthumbnail.jpeg",
             tag: "Hassle-Free",
             link: "/services/uplift-and-disposal"
         },
@@ -59,14 +59,14 @@ const Services = () => {
         {
             title: "10-year Fitting Guarantee",
             desc: "We promise to fix any carpet installation issues for free!",
-            img: "https://images.unsplash.com/photo-1588691520630-f5a6b0c611ff?auto=format&fit=crop&w=800&q=80",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb1jDJWEht-8_ct5z8V5rKpZgfdlq5oyMx8Q&s",
             tag: "Guarantee",
             link: "/services/10-year-fitting-guarantee"
         },
         {
             title: "Carpet Whipping",
             desc: "Create made-to-measure rugs and stair runners from your favourite carpet.",
-            img: "https://images.unsplash.com/photo-1620641788421-7a1c34a6a43d?auto=format&fit=crop&q=80&w=800",
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlF0xCQ6yhuIVgCPcVX0aZA8sF4s88d-vCAA&s",
             tag: "Bespoke",
             link: "/services/carpet-whipping"
         },
@@ -84,7 +84,7 @@ const Services = () => {
 
 
             {/* HEADER SECTION */}
-            <div className="relative h-[55vh] lg:h-[65vh] flex items-center pt-20 overflow-hidden" data-reveal="fade">
+            <div className="relative min-h-[80vh] flex items-center pt-32 pb-16 overflow-hidden" data-reveal="fade">
                 <div className="absolute inset-0 z-0">
                     <video
                         src={serviceVideo}
@@ -102,16 +102,16 @@ const Services = () => {
                     <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-10 leading-none text-white">
                         Uncompromising <br /><span className="text-[#C6A76B] italic">Service.</span>
                     </h1>
-                    <p className="text-[#BFBFBF] text-lg md:text-xl leading-relaxed max-w-3xl mx-auto tracking-wide text-xs opacity-80 font-bold mb-4">
+                    <p className="text-[#BFBFBF] text-base md:text-lg leading-relaxed max-w-3xl mx-auto opacity-80 font-medium mb-6">
                         We have a huge selection of extra services to choose from when you buy your flooring from us. Did you know we can arrange to remove and dispose of your old flooring before fitting your new one? We also offer a free measuring and planning service, as well as interest free credit, to make it as easy as possible to turn your dream floor into a reality.
                     </p>
-                    <p className="text-[#C6A76B] text-lg font-black uppercase tracking-widest">
+                    <p className="text-[#C6A76B] text-sm font-black uppercase tracking-widest">
                         Whatever you need, MFA Floors will come to the rescue!
                     </p>
                 </div>
             </div>
             {/* TOP PREMIUM STRIP */}
-            <div className="bg-[#111111] py-32 border-b border-white/5 overflow-hidden">
+            <div className="bg-[#111111] py-12 border-b border-white/5 overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-12 flex flex-wrap justify-between gap-6">
                     {bannerItems.map((item, idx) => (
                         <div key={idx} className="flex items-center gap-4 group transition-all">
